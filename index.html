@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1.0, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        // 屏蔽F5刷新页面
+        document.onkeydown = function (e) {
+            var ev = window.event || e;
+            var code = ev.keyCode || ev.which;
+            if (code == 116) {
+                if (ev.preventDefault) {
+                    ev.preventDefault();
+                } else {
+                    ev.keyCode = 0;
+                    ev.returnValue = false;
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>
