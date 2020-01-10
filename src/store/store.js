@@ -16,11 +16,14 @@ const store = new Vuex.Store({
     },
     mutations: {
         saveuser(state, payload) {
-            state.userinfo = payload.payload
+            state.userinfo = payload.payload;
         },
         setLanguage(state, payload) {
-            state.lang = payload.payload.language
-            session.setLocal("language", payload.payload.value)
+            state.lang = payload.payload.language;
+            session.setLocal("language", payload.payload.value);
+        },
+        signOut(state){
+            state.userinfo = {username:"",token:""};
         }
     }
 })

@@ -13,6 +13,7 @@
         :title="loginUser"
         :icon_after="'fa fa-angle-down'"
         :itemlist="getLoginMenu"
+        @callback="signOut"
       ></dropdown>
     </div>
     <div class="container">
@@ -54,8 +55,9 @@ export default {
     getLoginMenu(){
       let arr = [];
       let obj = this.$store.state.lang.usermenu;
-      for(item in obj){
-        arr.push({key:item,value:obj[item]})
+      
+      for(let item in obj){
+        arr.push({key:item,value:obj[item]});
       }
       return arr;
     }
@@ -80,6 +82,12 @@ export default {
         type: "setLanguage",
         payload: { value: value, language }
       });
+    },
+    signOut(){
+      this.$store.commit({
+        type: "signOut"
+      });
+      this.$router.push('/');
     }
   },
   components: {

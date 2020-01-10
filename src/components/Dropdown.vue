@@ -19,7 +19,6 @@ export default {
   props: ["icon_before", "icon_after", "title", "itemlist"],
   methods: {
     returnValue(value) {
-      console.log(value);
       this.$emit("callback", value);
     }
   }
@@ -61,7 +60,7 @@ export default {
 .dropdownItems {
   display: none;
   position: relative;
-  width: 120px;
+  width: 100px;
   height: auto;
   background-color: #f8f8f8;
   border:1px solid #e1e4e8;
