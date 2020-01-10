@@ -2,14 +2,14 @@
   <div class="index">
     <div class="nav">
       <dropdown
-        :icon_before="'fa fa-language fa-2x'"
+        :icon_before="'fa fa-language fa-1x'"
         :title="navtitle"
         :icon_after="'fa fa-angle-down'"
         :itemlist="languages"
         @callback="changeLanguage"
       ></dropdown>
     </div>
-    <!-- <div class="loginarea" v-if="!isLogin"> -->
+    
     <div class="container">
       <transition>
         <router-view />
@@ -83,18 +83,17 @@ export default {
 }
 
 .index {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
+  position:relative;
+  width: 100%;
+  height: 100%;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 .index .nav {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100vw;
-  height: 60px;
+  height: 70px;
   background-color: #000;
   z-index: 98;
   display: flex;
@@ -103,9 +102,10 @@ export default {
 }
 
 .index .container {
-  width: 95%;
-  height: 80%;
-  padding: 0 20px;
+  position:relative;
+  width: 100vw;
+  height: calc(100vh - 70px);/*减号左右必须有空额，否则谷歌浏览器报错*/
+  padding: 0;
   background-image: url("../imgs/simple-codelines.svg");
   background-repeat: repeat;
   background-size: contain;

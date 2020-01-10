@@ -28,6 +28,7 @@ export default {
 
 <style scoped>
 .dropdown {
+  position: relative;
   width: 160px;
   height: 60px;
   line-height: 60px;
@@ -46,6 +47,16 @@ export default {
 }
 .dropdown a:hover + .dropdownItems {
   display: block;
+  position: relative;
+}
+.dropdownItems:before {
+  content: "";
+  position: absolute;
+  border: 7px solid transparent;
+  border-bottom-color: #e0e0e0;
+  top: -14px;
+  right: 14px;
+  left: auto;
 }
 .dropdownItems {
   display: none;
@@ -58,6 +69,7 @@ export default {
 }
 .dropdownItems:hover {
   display: block;
+  position: relative;
 }
 
 .dropdownItems .dropdownItem {

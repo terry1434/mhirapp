@@ -50,7 +50,9 @@ export default {
 
 body {
   overflow: hidden;
-  max-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  position:relative;
   /* background-color: #4484ff; */
 }
 ul,
@@ -225,7 +227,7 @@ li {
 
 .container {
   width: 80%;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .container h2 {
@@ -349,6 +351,6 @@ input[type="submit"] {
   color: #000;
   font-size: 18px;
   border-radius: 2px;
-  width:100%;
+  width: 100%;
 }
 </style>

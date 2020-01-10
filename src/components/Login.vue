@@ -37,7 +37,7 @@
               <div class="waiting" v-if="!btnShow">
                 <!-- <i class="fa-li fa fa-spinner fa-spin fa-2x"></i> -->
                 <svg class="svg">
-                  <circle class="circle" cx="15" cy="15" r="7.5"/>
+                  <circle class="circle" cx="15" cy="15" r="7.5" />
                 </svg>
               </div>
             </div>
@@ -66,7 +66,6 @@ export default {
   },
   computed: {
     isLogin() {
-      console.log(this.$store.state.userinfo.token);
       return this.$store.state.userinfo.token;
     },
     lang() {
@@ -88,23 +87,23 @@ export default {
 
       this.btnShow = false;
       this.errmsg = "";
-      // setTimeout(() => {
-      //   this.btnShow = true;
-      //   this.errmsg = "";
-      //   this.$store.commit({
-      //     type: "saveuser",
-      //     payload: {
-      //       username: this.userinfo.username,
-      //       token: "1234567890"
-      //     }
-      //   });
-      //   session.setSession("token", "1234567890");
+      setTimeout(() => {
+        this.btnShow = true;
+        this.errmsg = "";
+        this.$store.commit({
+          type: "saveuser",
+          payload: {
+            username: this.userinfo.username,
+            token: "1234567890"
+          }
+        });
+        session.setSession("token", "1234567890");
 
-      //   //1秒后跳转到ok页面
-      //   setTimeout(() => {
-      //     this.$router.push("/menu")
-      //   }, 1000);
-      // }, 100);
+        //1秒后跳转到ok页面
+        setTimeout(() => {
+          this.$router.push("/menu");
+        }, 1000);
+      }, 100);
     }
   }
 };
@@ -125,15 +124,9 @@ export default {
 }
 
 .sub_main {
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 .model {
   content: "";
@@ -142,7 +135,7 @@ export default {
   background-color: #2b3137;
   opacity: 0.9;
   position: absolute;
-  top: 60px;
+  top: 0;
   left: 0;
 }
 .sub_main .row100 {
@@ -150,9 +143,13 @@ export default {
   display: block;
 }
 .container {
+  position: relative;
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  padding:20px;
 }
 .container .subTitle {
   position: relative;
@@ -177,10 +174,12 @@ export default {
 .container .login {
   position: relative;
   width: 100%;
+  height: 90%;
   max-width: 400px;
-  min-height: 600px;
+  min-height: 300px;
   border-radius: 7px;
   background-color: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -227,7 +226,7 @@ export default {
   .container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     flex-direction: column;
   }
   .container .subTitle {
@@ -242,11 +241,11 @@ svg {
   animation: rotate 2s linear infinite;
 }
 @keyframes rotate {
-  0%{
-    transform:rotate(0deg);
+  0% {
+    transform: rotate(0deg);
   }
-  100%{
-    transform:rotate(360deg);
+  100% {
+    transform: rotate(360deg);
   }
 }
 svg circle {
@@ -261,7 +260,7 @@ svg circle {
   animation: round 2s linear infinite;
 }
 @keyframes round {
-  0%{
+  0% {
     stroke-dashoffset: 48;
   }
   100% {

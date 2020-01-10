@@ -2,7 +2,7 @@ export default {
     title:"Language",
     Login: {
         msg1: "Welcome to IR Shanghai",
-        msg2: "As a refactor of the membership satisfaction survey website, this refactor USES the current worldwide popular front-end framework Vue combined with the.net API.Faster browsing experience.",
+        msg2: "say something...",
         msg3: "Login",
         msg4: "UserName",
         msg5: "Password",
