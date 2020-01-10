@@ -8,8 +8,13 @@
         :itemlist="languages"
         @callback="changeLanguage"
       ></dropdown>
+      <dropdown v-if="isLogin"
+        :icon_before="'fa fa-address-book fa-1x'"
+        :title="loginUser"
+        :icon_after="'fa fa-angle-down'"
+        :itemlist="getLoginMenu"
+      ></dropdown>
     </div>
-    
     <div class="container">
       <transition>
         <router-view />
@@ -37,11 +42,22 @@ export default {
     };
   },
   computed: {
+    loginUser(){
+      return this.$store.state.userinfo.username;
+    },
     navtitle() {
       return this.$store.state.lang.title;
     },
     isLogin() {
       return this.$store.state.userinfo.token;
+    },
+    getLoginMenu(){
+      let arr = [];
+      let obj = this.$store.state.lang.usermenu;
+      for(item in obj){
+        arr.push({key:item,value:obj[item]})
+      }
+      return arr;
     }
   },
   methods: {
@@ -77,23 +93,22 @@ export default {
 .v-leave-to {
   opacity: 0;
 }
+
 .v-enter-active,
 .v-leave-active {
   transition: all 1s ease;
 }
 
 .index {
-  position:relative;
+  position: relative;
   width: 100%;
   height: 100%;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
 }
+
 .index .nav {
   position: relative;
   width: 100vw;
-  height: 70px;
+  height: 55px;
   background-color: #000;
   z-index: 98;
   display: flex;
@@ -102,9 +117,9 @@ export default {
 }
 
 .index .container {
-  position:relative;
+  position: relative;
   width: 100vw;
-  height: calc(100vh - 70px);/*减号左右必须有空额，否则谷歌浏览器报错*/
+  height: calc(100vh - 55px); /*减号左右必须有空额，否则谷歌浏览器报错*/
   padding: 0;
   background-image: url("../imgs/simple-codelines.svg");
   background-repeat: repeat;

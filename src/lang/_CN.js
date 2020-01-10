@@ -9,5 +9,8 @@ export default {
         msg6: "登录",
         err1: "请输入用户名",
         err2: "请输入密码",
+    },
+    usermenu:{
+        msg1:"登出"
     }
 }

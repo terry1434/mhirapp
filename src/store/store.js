@@ -4,7 +4,7 @@ import CN from '../lang/_CN'
 import JP from '../lang/_JP'
 import EN from '../lang/_EN'
 import session from '../store/session'
-const LANGUAGE = {CN,JP,EN}
+const LANGUAGE = { CN, JP, EN }
 Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {

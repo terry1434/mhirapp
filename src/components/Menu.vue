@@ -1,6 +1,5 @@
 <template>
   <div class="menuArea">
-    <div class="subNav" v-if="isLogin" />
     <div class="model"></div>
     <div class="menuItem">
       <div class="item">xxxxx</div>
@@ -10,6 +9,7 @@
 
 <script>
 import session from "../store/session";
+import userinfo from '../components/UserInfo';
 export default {
   name: "menus",
   data(){
@@ -25,6 +25,9 @@ export default {
     if (session.getSession("token") == "") {
       this.$router.push("/login");
     }
+  },
+  components:{
+    userinfo
   }
 };
 </script>

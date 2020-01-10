@@ -29,7 +29,7 @@ export default {
 <style scoped>
 .dropdown {
   position: relative;
-  width: 160px;
+  width: 120px;
   height: 60px;
   line-height: 60px;
   display: flex;
@@ -37,7 +37,7 @@ export default {
   align-items: center;
   flex-direction: column;
   float: right;
-  margin-right: 6em;
+  margin-right: 1em;
 }
 .dropdown a {
   position: relative;
@@ -53,19 +53,22 @@ export default {
   content: "";
   position: absolute;
   border: 7px solid transparent;
-  border-bottom-color: #e0e0e0;
+  border-bottom-color: #f8f8f8;
   top: -14px;
   right: 14px;
   left: auto;
 }
 .dropdownItems {
   display: none;
-  width: 8em;
+  position: relative;
+  width: 120px;
   height: auto;
-  background-color: #e0e0e0;
+  background-color: #f8f8f8;
+  border:1px solid #e1e4e8;
   border-radius: 5px;
   padding: 5px 10px;
   margin-top: -10px;
+  transform:translateX(-30%);
 }
 .dropdownItems:hover {
   display: block;

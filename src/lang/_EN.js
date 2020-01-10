@@ -9,5 +9,8 @@ export default {
         msg6: "Login",
         err1: "Please enter a user name",
         err2: "Please enter your password ",
+    },
+    usermenu:{
+        msg1:"Sign Out"
     }
 }
