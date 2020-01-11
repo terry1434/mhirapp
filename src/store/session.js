@@ -8,15 +8,19 @@ export default {
         return sessionStorage.getItem(key)
     },
     //清空会话缓存
-    clearSession(key){
-        if(key){
+    clearSession(key) {
+        if (Object.prototype.toString.call(key) === "[object Array]") {
+            key.forEach(item => {
+                sessionStorage.removeItem(item)
+            })
+        } else if (key) {
             sessionStorage.removeItem(key)
-        }else{
+        } else {
             sessionStorage.clear()
         }
     },
     //设定本地缓存
-    setLocal(key,value){
+    setLocal(key, value) {
         localStorage.setItem(key, value)
     },
     //获取本地缓存
@@ -24,10 +28,10 @@ export default {
         return localStorage.getItem(key)
     },
     //清空本地缓存
-    clearLocal(key){
-        if(key){
+    clearLocal(key) {
+        if (key) {
             localStorage.removeItem(key)
-        }else{
+        } else {
             localStorage.clear()
         }
     }

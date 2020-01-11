@@ -97,8 +97,8 @@ export default {
             token: "1234567890"
           }
         });
+        session.setSession("username", this.userinfo.username);
         session.setSession("token", "1234567890");
-
         //1秒后跳转到ok页面
         setTimeout(() => {
           this.$router.push("/menu");
@@ -110,7 +110,7 @@ export default {
 </script>
 
 <style scoped>
-.left-leave-to {
+/* .left-leave-to {
   opacity: 0;
   transform: translateX(-100vw);
 }
@@ -121,7 +121,7 @@ export default {
 .left-leave-active,
 .right-leave-active {
   transition: all 1.5s linear;
-}
+} */
 
 .sub_main {
   width: 100%;

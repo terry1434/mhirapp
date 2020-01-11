@@ -6,6 +6,7 @@
         :title="navtitle"
         :icon_after="'fa fa-angle-down'"
         :itemlist="languages"
+        :dropWidth="'100px'"
         @callback="changeLanguage"
       ></dropdown>
       <dropdown v-if="isLogin"
@@ -13,6 +14,7 @@
         :title="loginUser"
         :icon_after="'fa fa-angle-down'"
         :itemlist="getLoginMenu"
+        :dropWidth="'100px'"
         @callback="signOut"
       ></dropdown>
     </div>
@@ -87,6 +89,7 @@ export default {
       this.$store.commit({
         type: "signOut"
       });
+      console.log('singOut')
       this.$router.push('/');
     }
   },
@@ -97,7 +100,7 @@ export default {
 </script>
 
 <style scoped>
-.v-enter,
+/* .v-enter,
 .v-leave-to {
   opacity: 0;
 }
@@ -105,7 +108,7 @@ export default {
 .v-enter-active,
 .v-leave-active {
   transition: all 1s ease;
-}
+} */
 
 .index {
   position: relative;

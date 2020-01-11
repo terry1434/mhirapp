@@ -9,6 +9,18 @@ import '../src/css/font-awesome.css'
 
 Vue.config.productionTip = true
 
+Vue.filter('snippet', function (value) {
+  console.log(value)
+  return value && value.length > 10 ? value.slice(0, 10) + '...' : value;
+})
+
+// Vue.directive("colorful", {
+//   bind(el, binding, vnode) {
+//     console.log(binding)
+//     el.style.backgroundColor = binding.value;
+//   }
+// })
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
