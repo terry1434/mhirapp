@@ -28,7 +28,7 @@ export default {
 <style scoped>
 .dropdown {
   position: relative;
-  width: 150px;
+  width: 140px;
   height: 60px;
   line-height: 60px;
   display: flex;
