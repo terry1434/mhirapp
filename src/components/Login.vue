@@ -25,7 +25,7 @@
           <div class="row100">
             <div class="col">
               <div class="inputBox">
-                <input :type="type" name required="required" ref="password" />
+                <input :type="type" name required="required" ref="password" @keyup.enter="submit"/>
                 <span class="text">{{lang.msg5}}</span>
                 <span class="line"></span>
               </div>
