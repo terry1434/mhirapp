@@ -49,7 +49,7 @@ export default {
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
   width: 100vw;
   height: 100vh;
   position:relative;

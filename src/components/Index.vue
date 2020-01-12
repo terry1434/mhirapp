@@ -24,7 +24,10 @@
       </transition>
     </div>
 
-    <div class="foot"></div>
+    <div class="foot">
+      <h4>MHIR社员满意度调查 更新于2020年1月21日</h4>
+      <p>版权所有：瑞穗信息系统（上海）有限公司</p>
+    </div>
   </div>
 </template>
 
@@ -139,6 +142,20 @@ export default {
   background-size: contain;
 }
 
+.foot{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding:18px 0;
+  background-color:#f6f9fa;
+}
+.foot h4,.foot p{
+  font:13px 'Helvetica Neue', Helvetica, Arial, 'Microsoft Yahei', 'Hiragino Sans GB', 'Heiti SC', 'WenQuanYi Micro Hei', sans-serif;
+  font-weight: normal;
+  color:#999;
+  margin-bottom:6px;
+}
 @media screen and (max-width: 684px) {
   .index .nav .dropdown a {
     margin-right: 4em;
