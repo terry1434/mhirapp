@@ -5,11 +5,12 @@
       {{title | snippet}}
       <i :class="icon_after" v-if="icon_after"></i>
     </a>
-    <ul class="dropdownItems" :style="'width:'+dropWidth">
-      <li v-for="item in itemlist" :key="item.key" class="dropdownItem">
-        <a href="javascript:void(0)" @click="returnValue(item.key)">{{item.value}}</a>
-      </li>
-    </ul>
+      <ul class="dropdownItems" :style="'width:'+dropWidth">
+        <li v-for="item in itemlist" :key="item.key" class="dropdownItem">
+          <a v-if="item.value.icon" href="javascript:void(0)" @click="returnValue(item.key)"><i :class="item.value.icon"></i>{{item.value.value}}</a>
+          <a v-if="!item.value.icon" href="javascript:void(0)" @click="returnValue(item.key)">{{item.value}}</a>
+        </li>
+      </ul>
   </div>
 </template>
 
@@ -17,6 +18,11 @@
 export default {
   name: "dropdown",
   props: ["icon_before", "icon_after", "title", "itemlist", "dropWidth"],
+  computed:{
+    menuitem(){
+
+    }
+  },
   methods: {
     returnValue(value) {
       this.$emit("callback", value);
@@ -60,7 +66,7 @@ export default {
 .dropdownItems {
   display: none;
   position: relative;
-  width: auto;
+  width: 200px;
   height: auto;
   background-color: #f8f8f8;
   border: 1px solid #e1e4e8;

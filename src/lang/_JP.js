@@ -1,5 +1,5 @@
 export default {
-    title:"語言",
+    title: { value: "語言" },
     Login: {
         msg1: "IR上海へようこそ",
         msg2: "何か書ける",
@@ -10,7 +10,7 @@ export default {
         err1: "ユーザー名を入力してください",
         err2: "パスワードを入力してください",
     },
-    usermenu:{
-        msg1:"ログアウト"
+    usermenu: {
+        msg1: { value: "ログアウト", icon: "fa fa-sign-out" }
     }
 }

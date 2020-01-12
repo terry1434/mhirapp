@@ -1,5 +1,5 @@
 export default {
-    title:"语言",
+    title: { value: "语言" },
     Login: {
         msg1: "欢迎您来到IR上海",
         msg2: "此处展示网站说文",
@@ -10,7 +10,7 @@ export default {
         err1: "请输入用户名",
         err2: "请输入密码",
     },
-    usermenu:{
-        msg1:"登出"
+    usermenu: {
+        msg1: { value: "登出", icon: "fa fa-sign-out" }
     }
 }

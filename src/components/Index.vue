@@ -14,7 +14,7 @@
         :title="loginUser"
         :icon_after="'fa fa-angle-down'"
         :itemlist="getLoginMenu"
-        :dropWidth="'100px'"
+        :dropWidth="'120px'"
         @callback="signOut"
       ></dropdown>
     </div>
@@ -60,7 +60,9 @@ export default {
       
       for(let item in obj){
         arr.push({key:item,value:obj[item]});
+        
       }
+      console.log(arr[0])
       return arr;
     }
   },

@@ -1,5 +1,5 @@
 export default {
-    title:"Language",
+    title: { value: "Language" },
     Login: {
         msg1: "Welcome to IR Shanghai",
         msg2: "say something...",
@@ -10,7 +10,7 @@ export default {
         err1: "Please enter a user name",
         err2: "Please enter your password ",
     },
-    usermenu:{
-        msg1:"Sign Out"
+    usermenu: {
+        msg1: { value: "Sign Out", icon: "fa fa-sign-out" }
     }
 }
