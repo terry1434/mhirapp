@@ -5,17 +5,20 @@ import App from './App'
 import router from './router'
 import store from './store/store'
 import '../src/css/font-awesome.css'
+import 'element-ui/lib/theme-chalk/index.css'
+import { Message } from 'element-ui';
 
 
-Vue.config.productionTip = true
+Vue.config.productionTip = true;
+Vue.prototype.$message = Message;
 
 Vue.filter('snippet', function (item) {
-  if(typeof item==="object"){
+  if (typeof item === "object") {
     return item.value && item.value.length > 10 ? item.value.slice(0, 10) + '...' : item.value;
-  }else{
+  } else {
     return item && item.length > 10 ? item.slice(0, 10) + '...' : item;
   }
-  
+
 })
 
 // Vue.directive("colorful", {

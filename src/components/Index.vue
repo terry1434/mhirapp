@@ -9,7 +9,8 @@
         :dropWidth="'100px'"
         @callback="changeLanguage"
       ></dropdown>
-      <dropdown v-if="isLogin"
+      <dropdown
+        v-if="isLogin"
         :icon_before="'fa fa-address-book fa-1x'"
         :title="loginUser"
         :icon_after="'fa fa-angle-down'"
@@ -48,7 +49,7 @@ export default {
     };
   },
   computed: {
-    loginUser(){
+    loginUser() {
       return this.$store.state.userinfo.username;
     },
     navtitle() {
@@ -57,15 +58,14 @@ export default {
     isLogin() {
       return this.$store.state.userinfo.token;
     },
-    getLoginMenu(){
+    getLoginMenu() {
       let arr = [];
       let obj = this.$store.state.lang.usermenu;
-      
-      for(let item in obj){
-        arr.push({key:item,value:obj[item]});
-        
+
+      for (let item in obj) {
+        arr.push({ key: item, value: obj[item] });
       }
-      console.log(arr[0])
+      console.log(arr[0]);
       return arr;
     }
   },
@@ -90,12 +90,25 @@ export default {
         payload: { value: value, language }
       });
     },
-    signOut(){
-      this.$store.commit({
-        type: "signOut"
+    signOut() {
+      const self = this;
+      this.$message({
+        showClose: true,
+        message: "退出成功。",
+        type: "success",
+        duration: 0,
+        onClose: function() {
+          self.$store.commit({
+            type: "signOut"
+          });
+          self.$router.push("/");
+        }
       });
-      console.log('singOut')
-      this.$router.push('/');
+
+      // setTimeout(() => {
+      //   console.log(this);
+      //   this.$router.push("/");
+      // }, 1000);
     }
   },
   components: {
@@ -142,19 +155,21 @@ export default {
   background-size: contain;
 }
 
-.foot{
-  display:flex;
+.foot {
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding:18px 0;
-  background-color:#f6f9fa;
+  padding: 18px 0;
+  background-color: #f6f9fa;
 }
-.foot h4,.foot p{
-  font:13px 'Helvetica Neue', Helvetica, Arial, 'Microsoft Yahei', 'Hiragino Sans GB', 'Heiti SC', 'WenQuanYi Micro Hei', sans-serif;
+.foot h4,
+.foot p {
+  font: 13px "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei",
+    "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
   font-weight: normal;
-  color:#999;
-  margin-bottom:6px;
+  color: #999;
+  margin-bottom: 6px;
 }
 @media screen and (max-width: 684px) {
   .index .nav .dropdown a {
