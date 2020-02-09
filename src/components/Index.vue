@@ -1,7 +1,9 @@
 <template>
   <div class="index">
     <div class="nav">
+      <div class="logo"></div>
       <dropdown
+        v-if="!isLogin"
         :icon_before="'fa fa-language fa-1x'"
         :title="navtitle"
         :icon_after="'fa fa-angle-down'"
@@ -19,6 +21,9 @@
         @callback="signOut"
       ></dropdown>
     </div>
+    <div class="slideright" v-if="isLogin">
+      <slidebar></slidebar>
+    </div>
     <div class="container">
       <transition>
         <router-view />
@@ -27,7 +32,7 @@
 
     <div class="foot">
       <h4>MHIR社员满意度调查 更新于2020年1月21日</h4>
-      <p>版权所有：瑞穗信息系统（上海）有限公司</p>
+      <p>版权所有：©2020 瑞穗信息系统（上海）有限公司 MHIRSH</p>
     </div>
   </div>
 </template>
@@ -37,6 +42,7 @@ import CN from "../lang/_CN";
 import JP from "../lang/_JP";
 import EN from "../lang/_EN";
 import dropdown from "../components/Dropdown";
+import slidebar from "../components/SlideBar";
 export default {
   name: "index",
   data() {
@@ -57,6 +63,9 @@ export default {
     },
     isLogin() {
       return this.$store.state.userinfo.token;
+    },
+    lang() {
+      return this.$store.state.lang.Login;
     },
     getLoginMenu() {
       let arr = [];
@@ -93,17 +102,15 @@ export default {
     signOut() {
       const self = this;
       this.$message({
-        showClose: true,
-        message: "退出成功。",
+        message: this.lang.msg8,
         type: "success",
-        duration: 0,
-        onClose: function() {
-          self.$store.commit({
-            type: "signOut"
-          });
-          self.$router.push("/");
-        }
+        duration: 1000
       });
+
+      self.$store.commit({
+        type: "signOut"
+      });
+      self.$router.push("/");
 
       // setTimeout(() => {
       //   console.log(this);
@@ -112,7 +119,8 @@ export default {
     }
   },
   components: {
-    dropdown
+    dropdown,
+    slidebar
   }
 };
 </script>
@@ -130,38 +138,68 @@ export default {
 
 .index {
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 60px 1fr 60px;
+  grid-template-columns: 100px 1fr 100px;
+  grid-template-areas:
+    "nav nav nav"
+    "slideright main ."
+    "foot foot foot";
+  row-gap: 10px;
 }
 
 .index .nav {
+  grid-area: nav;
   position: relative;
-  width: 100vw;
-  height: 55px;
-  background-color: #000;
-  z-index: 98;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
+  width: 100%;
+  height: 55px;
+  background-color: rgba(21, 1, 126, 1);
+  z-index: 1;
+}
+.index .nav div.logo {
+  width: 150px;
+  height: 100%;
+  margin-right: auto;
+  justify-self: flex-start;
+  align-self: flex-start;
+  background-image: url(../imgs/logo2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
+.index .slideright {
+  grid-area: slideright;
+  background-color: transparent;
+  margin: 0 10px;
+  /* border:1px solid #e0e0e0; */
+  border-radius: 5px;
+}
 .index .container {
+  grid-area: main;
   position: relative;
-  width: 100vw;
-  height: calc(100vh - 55px); /*减号左右必须有空额，否则谷歌浏览器报错*/
-  padding: 0;
-  background-image: url("../imgs/simple-codelines.svg");
+  width: 100%;
+  height: 100%;
+  /* background-image: url("../imgs/simple-codelines.svg");
   background-repeat: repeat;
-  background-size: contain;
+  background-size: contain; */
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
 }
 
 .foot {
+  grid-area: foot;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding: 18px 0;
-  background-color: #f6f9fa;
+  background-color: #eee;
 }
 .foot h4,
 .foot p {
@@ -174,6 +212,9 @@ export default {
 @media screen and (max-width: 684px) {
   .index .nav .dropdown a {
     margin-right: 4em;
+  }
+  .index {
+    grid-template-columns: 0 1fr 0;
   }
 }
 </style>

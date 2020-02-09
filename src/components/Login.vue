@@ -25,7 +25,7 @@
           <div class="row100">
             <div class="col">
               <div class="inputBox">
-                <input :type="type" name required="required" ref="password" @keyup.enter="submit"/>
+                <input :type="type" name required="required" ref="password" @keyup.enter="submit" />
                 <span class="text">{{lang.msg5}}</span>
                 <span class="line"></span>
               </div>
@@ -99,11 +99,17 @@ export default {
         });
         session.setSession("username", this.userinfo.username);
         session.setSession("token", "1234567890");
-        //1秒后跳转到ok页面
-        setTimeout(() => {
-          this.$router.push("/menu");
-        }, 1000);
-      }, 100);
+        
+        //跳转到ok页面
+        this.$router.push("/home");
+
+        //模拟登录成功提示消息
+        this.$message({
+          message: this.lang.msg7,
+          type: "success",
+          duration: 1500
+        });
+      }, 0);
     }
   }
 };
@@ -137,6 +143,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
+  border-radius: 5px;
 }
 .sub_main .row100 {
   width: 240px;
@@ -149,7 +156,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding:20px;
+  padding: 20px;
 }
 .container .subTitle {
   position: relative;
@@ -178,16 +185,36 @@ export default {
   max-width: 400px;
   min-height: 300px;
   border-radius: 7px;
-  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  background-color: #fff;
+  background-image: url(../imgs/shanghai.jpg);
+  background-repeat: no-repeat;
+  background-size: 105% 105%;
+  background-position-y: 240px;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
+.container .login:before{
+  content:"";
+  width:100%;
+  height:100%;
+  opacity:0.5;
+  position: absolute;
+  top:0;
+  border-radius: 7px;
+  /* background:linear-gradient(to bottom,#0984e3,#dfe6e9,#fff); */
+  background-color:#e0e0e0;
+}
+
+
 .container .login h2 {
   position: relative;
-  color: #45f3ff;
+  color: #0984e3;
+  /* color: #ffffff; */
+  /* text-shadow: 0 0 15px #0e0e0e; */
 }
 
 .waiting {
@@ -202,7 +229,7 @@ export default {
   position: relative;
   left: 0;
   top: 0;
-  color: #45f3ff;
+  color: #0984e3;
 }
 .errmsg {
   color: #f40;
@@ -210,6 +237,8 @@ export default {
   width: 80%;
   height: 55px;
   text-align: center;
+  z-index:99;
+  font-weight:600;
 }
 @keyframes round {
   0% {
@@ -253,7 +282,7 @@ svg circle {
   height: 100%;
   fill: none;
   stroke-width: 3;
-  stroke: #00a1ff;
+  stroke: #0984e3;
   stroke-linecap: round;
   stroke-dasharray: 48;
   stroke-dashoffset: 48;

@@ -7,6 +7,8 @@ export default {
         msg4: "用户名",
         msg5: "密码",
         msg6: "登录",
+        msg7: "登录成功",
+        msg8: "退出成功",
         err1: "请输入用户名",
         err2: "请输入密码",
     },

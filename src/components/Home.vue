@@ -1,9 +1,8 @@
 <template>
-  <div class="menuArea">
-    <div class="model"></div>
-    <div class="menuItem">
-      <div class="item">xxxxx</div>
-    </div>
+  <div class="container">
+    <h1>Home page</h1>
+    <div class="swiper">此处显示轮播图</div>
+
   </div>
 </template>
 
@@ -11,7 +10,7 @@
 import session from "../store/session";
 import userinfo from '../components/UserInfo';
 export default {
-  name: "menus",
+  name: "home",
   data(){
     return{
       
@@ -21,7 +20,7 @@ export default {
     
   },
   mounted() {
-    console.log("menu mounted");
+    console.log("home mounted");
     if (session.getSession("token") == "") {
       this.$router.push("/login");
     }
@@ -38,5 +37,10 @@ export default {
   width: 100vw;
   height: 40px;
   background-color: green;
+}
+.swiper{
+  width:100%;
+  height:50%;
+  border:1px solid red;
 }
 </style>

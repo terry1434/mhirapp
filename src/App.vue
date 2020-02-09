@@ -52,8 +52,8 @@ body {
   overflow-x: hidden;
   width: 100vw;
   height: 100vh;
-  position:relative;
-  /* background-color: #4484ff; */
+  position: relative;
+  background-color: #eee;
 }
 ul,
 li {
@@ -232,7 +232,7 @@ li {
 
 .container h2 {
   width: 100%;
-  color: #45f3ff;
+  color: #0984e3;
   font-size: 36px;
   text-align: center;
   margin-bottom: 10px;
@@ -257,7 +257,7 @@ li {
   position: relative;
   width: 100%;
   height: 40px;
-  color: #45f3ff;
+  color: #0984e3;
 }
 
 .row100 .inputBox input,
@@ -270,9 +270,10 @@ li {
   border: none;
   outline: none;
   font-size: 18px;
+  font-weight:bold;
   padding: 0 10px;
   z-index: 1;
-  color: #000;
+  color: #dfe6e9;
 }
 
 .row100 .inputBox .text {
@@ -291,6 +292,7 @@ li {
 .row100 .inputBox input:valid + .text {
   top: -35px;
   left: -10px;
+  font-weight:bold;
 }
 
 .row100 .inputBox .line {
@@ -299,7 +301,7 @@ li {
   display: block;
   width: 100%;
   height: 2px;
-  background-color: #45f3ff;
+  background-color: #0984e3;
   transition-duration: 0.5s;
   border-radius: 2px;
   pointer-events: none;
@@ -316,7 +318,7 @@ li {
   right: 5px;
   width: 20px;
   height: 20px;
-  background-color: #000;
+  background-color: #fff;
 }
 
 .row100 .inputBox.textarea {
@@ -335,6 +337,7 @@ li {
 .row100 .inputBox textarea:valid + .text {
   top: -35px;
   left: -10px;
+  font-weight:bold;
 }
 
 .row100 .inputBox textarea:focus ~ .line,
@@ -347,10 +350,13 @@ input[type="submit"] {
   padding: 7px 35px;
   cursor: pointer;
   outline: none;
-  background-color: #45f3ff;
-  color: #000;
+  background-color: #0984e3;
+  color: #dfe6e9;
   font-size: 18px;
+  font-weight:bold;
   border-radius: 2px;
   width: 100%;
+  opacity: 0.8;
+  letter-spacing: 2px;
 }
 </style>

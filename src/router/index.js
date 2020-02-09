@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import index from '@/components/Index'
 import login from '@/components/Login'
-import menu from '@/components/Menu'
+import home from '@/components/Home'
+import page404 from '@/components/page404'
 Vue.use(Router)
 
 const router = new Router({
@@ -19,12 +20,13 @@ const router = new Router({
           component: login
         },
         {
-          path: "/menu",
-          name: "menu",
-          component: menu
+          path: "/home",
+          name: "home",
+          component: home
         }
       ]
-    }
+    },
+    { path: '/404', component: page404, name: 'page404' },
   ],
   mode: "history"
 })
@@ -34,10 +36,17 @@ const router = new Router({
 //from:跳转后的路径
 //next:函数，表示放行
 router.beforeEach((to, from, next) => {
-  if (to.path === "/login") return next();
+  if (to.path === "/login") {
+    return next();
+  } else {
+    if (to.matched.length == 0) {
+      next('/404');
+    }
+  }
+
   //获取token
   const token = window.sessionStorage.getItem('token');
-  if(!token) return next('/login');
+  if (!token) return next('/login');
   next();
 })
 
