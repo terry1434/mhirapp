@@ -32,15 +32,8 @@ export default {
 </script>
 
 <style scoped>
-.index .subNav {
-  position: relative;
-  width: 100vw;
-  height: 40px;
-  background-color: green;
-}
-.swiper{
-  width:100%;
-  height:50%;
-  border:1px solid red;
+div.container{
+  padding:10px 20px 10px;
+  box-sizing:border-box;
 }
 </style>

@@ -7,7 +7,7 @@
         class="msg2"
       >This page you were looking for doesn't exist.You may have mistyped the address or the page may have moved.</div>
       <div class="back">
-        <router-link to="/">Back to Home</router-link>
+        <router-link to="/home">Back to Home</router-link>
       </div>
     </div>
   </div>

@@ -8,10 +8,10 @@
     </label>
     <div class="slideMenus">
       <ul>
-        <li>菜单1</li>
-        <li>菜单2</li>
-        <li>菜单3</li>
-        <li>菜单4</li>
+        <li>功能1</li>
+        <li>功能2</li>
+        <li>功能3</li>
+        <li>功能4</li>
       </ul>
     </div>
   </div>
@@ -78,6 +78,13 @@ div.slidebar > div.slideMenus > ul > li {
   line-height: 40px;
   font-size: 16px;
 }
+div.slidebar > div.slideMenus > ul > li:hover {
+  box-shadow: 0 0 5px #636e72;
+  background-color:#0984e3;
+  color:#dfe6e9;
+  cursor:pointer;
+}
+
 input[type="checkbox"] {
   display: none;
 }

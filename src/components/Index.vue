@@ -1,5 +1,5 @@
 <template>
-  <div class="index">
+  <div class="index" :class="{notLogin:!isLogin}">
     <div class="nav">
       <div class="logo"></div>
       <dropdown
@@ -21,7 +21,10 @@
         @callback="signOut"
       ></dropdown>
     </div>
-    <div class="slideright" v-if="isLogin">
+    <div class="userinfo" v-if="isLogin">
+      <userinfo></userinfo>
+    </div>
+    <div class="slideLeft" v-if="isLogin">
       <slidebar></slidebar>
     </div>
     <div class="container">
@@ -43,6 +46,7 @@ import JP from "../lang/_JP";
 import EN from "../lang/_EN";
 import dropdown from "../components/Dropdown";
 import slidebar from "../components/SlideBar";
+import userinfo from "../components/UserInfo";
 export default {
   name: "index",
   data() {
@@ -120,7 +124,8 @@ export default {
   },
   components: {
     dropdown,
-    slidebar
+    userinfo,
+    slidebar,
   }
 };
 </script>
@@ -142,14 +147,17 @@ export default {
   height: 100vh;
   display: grid;
   grid-template-rows: 60px 1fr 60px;
-  grid-template-columns: 100px 1fr 100px;
+  grid-template-columns: 1fr 3fr 120px;
   grid-template-areas:
     "nav nav nav"
-    "slideright main ."
+    "userInfo main slideLeft"
     "foot foot foot";
   row-gap: 10px;
+  background-color:#f5f6f7;
 }
-
+.notLogin {
+  grid-template-columns: 1fr 10fr 1fr;
+}
 .index .nav {
   grid-area: nav;
   position: relative;
@@ -171,23 +179,29 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.index .userinfo{
+  grid-area:userInfo;
+  padding:0 25px;
+  border-radius:10px;
+  transition:all 0.5s linear;
+  transform:rotateY(0deg);
+  backface-visibility: hidden;
+}
 
-.index .slideright {
-  grid-area: slideright;
+
+.index .slideLeft {
+  grid-area: slideLeft;
   background-color: transparent;
   margin: 0 10px;
   /* border:1px solid #e0e0e0; */
   border-radius: 5px;
 }
-.index .container {
+.index>.container {
   grid-area: main;
   position: relative;
   width: 100%;
   height: 100%;
-  /* background-image: url("../imgs/simple-codelines.svg");
-  background-repeat: repeat;
-  background-size: contain; */
-  border-radius: 5px;
+  /* border-radius: 5px; */
   border: 1px solid #e0e0e0;
   box-sizing: border-box;
 }

@@ -42,7 +42,8 @@ export default {
 
 <style>
 * {
-  font-family: "Poppings", sans-serif;
+  font-family: "Microsoft YaHei", "SF Pro Display", Roboto, Noto, Arial,
+    "PingFang SC", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -270,7 +271,7 @@ li {
   border: none;
   outline: none;
   font-size: 18px;
-  font-weight:bold;
+  font-weight: bold;
   padding: 0 10px;
   z-index: 1;
   color: #dfe6e9;
@@ -292,7 +293,7 @@ li {
 .row100 .inputBox input:valid + .text {
   top: -35px;
   left: -10px;
-  font-weight:bold;
+  font-weight: bold;
 }
 
 .row100 .inputBox .line {
@@ -337,7 +338,7 @@ li {
 .row100 .inputBox textarea:valid + .text {
   top: -35px;
   left: -10px;
-  font-weight:bold;
+  font-weight: bold;
 }
 
 .row100 .inputBox textarea:focus ~ .line,
@@ -353,7 +354,7 @@ input[type="submit"] {
   background-color: #0984e3;
   color: #dfe6e9;
   font-size: 18px;
-  font-weight:bold;
+  font-weight: bold;
   border-radius: 2px;
   width: 100%;
   opacity: 0.8;
