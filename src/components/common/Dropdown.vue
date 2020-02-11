@@ -1,31 +1,56 @@
+
 <template>
   <div class="dropdown">
-    <a href="javascript:void(0)">
+    <a href="javascript:void(0)" ref="dta">
       <i :class="icon_before" v-if="icon_before"></i>
       {{title | snippet}}
       <i :class="icon_after" v-if="icon_after"></i>
     </a>
-      <ul class="dropdownItems" :style="'width:'+dropWidth">
-        <li v-for="item in itemlist" :key="item.key" class="dropdownItem">
-          <a v-if="item.value.icon" href="javascript:void(0)" @click="returnValue(item.key)"><i :class="item.value.icon"></i>{{item.value.value}}</a>
-          <a v-if="!item.value.icon" href="javascript:void(0)" @click="returnValue(item.key)">{{item.value}}</a>
-        </li>
-      </ul>
+    <ul class="dropdownItems" :style="'width:'+dropWidth">
+      <li v-for="item in itemlist" :key="item.key" class="dropdownItem">
+        <a
+          v-if="item.value.icon"
+          href="javascript:void(0)"
+          @click="returnValue(item.key,item.value)"
+        >
+          <i :class="item.value.icon"></i>
+          {{item.value.value}}
+        </a>
+        <a
+          v-if="!item.value.icon"
+          href="javascript:void(0)"
+          @click="returnValue(item.key,item.value)"
+        >{{item.value}}</a>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
   name: "dropdown",
-  props: ["icon_before", "icon_after", "title", "itemlist", "dropWidth"],
-  computed:{
-    menuitem(){
-
+  props: [
+    "icon_before",
+    "icon_after",
+    "title",
+    "itemlist",
+    "dropWidth",
+    "options"
+  ],
+  mounted() {
+    //options选项作为扩展
+    if (this.options) {
+      this.$refs.dta.style.color = this.options.color
+        ? this.options.color
+        : this.$refs.dta.style.color;
     }
   },
+  computed: {
+    menuitem() {}
+  },
   methods: {
-    returnValue(value) {
-      this.$emit("callback", value);
+    returnValue(key, value) {
+      this.$emit("callback", key, value);
     }
   }
 };
@@ -42,7 +67,7 @@ export default {
   align-items: center;
   flex-direction: column;
   float: right;
-  margin-right: 1em;
+  /* margin-right: 1em; */
 }
 .dropdown > a {
   position: relative;
@@ -90,12 +115,10 @@ export default {
   position: absolute;
   color: #000;
   text-decoration: none;
-  width:100%;
-  text-align:center;
-  /* transition: transform 0.3s linear; */
+  width: 100%;
+  text-align: center;
 }
 .dropdownItems .dropdownItem a:hover {
-  /* transform: translateX(6px); */
   color: #113;
   font-weight: 700;
 }

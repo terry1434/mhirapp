@@ -41,12 +41,13 @@
 </template>
 
 <script>
-import CN from "../lang/_CN";
-import JP from "../lang/_JP";
-import EN from "../lang/_EN";
-import dropdown from "../components/Dropdown";
-import slidebar from "../components/SlideBar";
-import userinfo from "../components/UserInfo";
+import CN from "../../lang/_CN";
+import JP from "../../lang/_JP";
+import EN from "../../lang/_EN";
+import dropdown from "../common/Dropdown";
+import slidebar from "../common/SlideBar";
+import userinfo from "../common/UserInfo";
+import userinfoedit from "../common/UserInfoEdit"
 export default {
   name: "index",
   data() {
@@ -126,8 +127,10 @@ export default {
     dropdown,
     userinfo,
     slidebar,
+    userinfoedit
   }
 };
+
 </script>
 
 <style scoped>
@@ -175,7 +178,7 @@ export default {
   margin-right: auto;
   justify-self: flex-start;
   align-self: flex-start;
-  background-image: url(../imgs/logo2.jpg);
+  background-image: url(../../imgs/logo2.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -185,7 +188,6 @@ export default {
   border-radius:10px;
   transition:all 0.5s linear;
   transform:rotateY(0deg);
-  backface-visibility: hidden;
 }
 
 

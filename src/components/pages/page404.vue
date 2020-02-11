@@ -53,7 +53,7 @@ div.page404 > div.container {
   background-color: #0e0e0e;
   border-radius: 10px;
   height: 90vh;
-  background-image: url(../imgs/backmove.jpg);
+  background-image: url(../../imgs/backmove.jpg);
   background-repeat: no-repeat;
   background-size: 120%;
 }

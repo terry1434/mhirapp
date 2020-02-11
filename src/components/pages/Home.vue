@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import session from "../store/session";
-import userinfo from '../components/UserInfo';
+import session from "../../store/session";
+import userinfo from '../common/UserInfo';
 export default {
   name: "home",
   data(){

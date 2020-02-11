@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '@/components/Index'
-import login from '@/components/Login'
-import home from '@/components/Home'
-import page404 from '@/components/page404'
+import index from '@/components/pages/Index'
+import login from '@/components/common/Login'
+import home from '@/components/pages/Home'
+import userinfoedit from '@/components/common/userinfoedit'
+
+
+import page404 from '@/components/pages/page404'
 Vue.use(Router)
 
 const router = new Router({
@@ -23,6 +26,11 @@ const router = new Router({
           path: "/home",
           name: "home",
           component: home
+        },
+        {
+          path: "/userinfoedit",
+          name: "userinfoedit",
+          component: userinfoedit
         }
       ]
     },

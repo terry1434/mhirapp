@@ -2,11 +2,11 @@
   <div class="container">
     <div class="user">
       <div class="userimg">
-        <img src="../imgs/backmove.jpg" alt="头像" />
+        <img src="../../imgs/backmove.jpg" alt="头像" />
       </div>
       <div class="username">
         <span>{{username}}</span>
-        <router-link to="/">修改</router-link>
+        <router-link to="/userinfoedit">修改</router-link>
       </div>
     </div>
     <div class="info">

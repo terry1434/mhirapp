@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import session from "../store/session";
+import session from "../../store/session";
 export default {
   name: "login",
   data() {
@@ -187,7 +187,7 @@ export default {
   border-radius: 7px;
   /* background-color: rgba(0, 0, 0, 0.5); */
   background-color: #fff;
-  background-image: url(../imgs/shanghai.jpg);
+  background-image: url(../../imgs/shanghai.jpg);
   background-repeat: no-repeat;
   background-size: 105% 105%;
   background-position-y: 240px;
