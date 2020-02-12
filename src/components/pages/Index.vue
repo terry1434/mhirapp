@@ -28,7 +28,7 @@
       <slidebar></slidebar>
     </div>
     <div class="container">
-      <transition>
+      <transition mode="out-in">
         <router-view />
       </transition>
     </div>
@@ -47,7 +47,7 @@ import EN from "../../lang/_EN";
 import dropdown from "../common/Dropdown";
 import slidebar from "../common/SlideBar";
 import userinfo from "../common/UserInfo";
-import userinfoedit from "../common/UserInfoEdit"
+import userinfoedit from "../pages/UserInfoEdit"
 export default {
   name: "index",
   data() {
@@ -134,15 +134,15 @@ export default {
 </script>
 
 <style scoped>
-/* .v-enter,
+.v-enter,
 .v-leave-to {
   opacity: 0;
 }
 
 .v-enter-active,
 .v-leave-active {
-  transition: all 1s ease;
-} */
+  transition: all .35s ease;
+}
 
 .index {
   position: relative;

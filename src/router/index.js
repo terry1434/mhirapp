@@ -3,9 +3,7 @@ import Router from 'vue-router'
 import index from '@/components/pages/Index'
 import login from '@/components/common/Login'
 import home from '@/components/pages/Home'
-import userinfoedit from '@/components/common/userinfoedit'
-
-
+import userinfoedit from '@/components/pages/userinfoedit'
 import page404 from '@/components/pages/page404'
 Vue.use(Router)
 

@@ -6,7 +6,7 @@
       {{title | snippet}}
       <i :class="icon_after" v-if="icon_after"></i>
     </a>
-    <ul class="dropdownItems" :style="'width:'+dropWidth">
+    <ul class="dropdownItems" :style="'width:'+dropWidth" ref="dropdownItems">
       <li v-for="item in itemlist" :key="item.key" class="dropdownItem">
         <a
           v-if="item.value.icon"
@@ -67,7 +67,6 @@ export default {
   align-items: center;
   flex-direction: column;
   float: right;
-  /* margin-right: 1em; */
 }
 .dropdown > a {
   position: relative;
