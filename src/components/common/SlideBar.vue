@@ -8,10 +8,22 @@
     </label>
     <div class="slideMenus">
       <ul>
-        <li>功能1</li>
-        <li>功能2</li>
-        <li>功能3</li>
-        <li>功能4</li>
+        <li title="首页">
+          <router-link to="/home">
+            <i class="fa fa-home"></i>
+          </router-link>
+        </li>
+        <li title="修改个人信息">
+          <router-link to="/userinfoedit">
+            <i class="fa fa-pencil fa-fw"></i>
+          </router-link>
+        </li>
+        <li title="快速问卷" disabled>
+          <i class="fa fa-file-text-o"></i>
+        </li>
+        <li title="网站管理" disabled>
+          <i class="fa fa-wrench"></i>
+        </li>
       </ul>
     </div>
   </div>
@@ -80,11 +92,17 @@ div.slidebar > div.slideMenus > ul > li {
 }
 div.slidebar > div.slideMenus > ul > li:hover {
   box-shadow: 0 0 5px #636e72;
-  background-color:#0984e3;
-  color:#dfe6e9;
-  cursor:pointer;
+  background-color: #0984e3;
+  color: #dfe6e9;
+  cursor: pointer;
 }
-
+div.slidebar > div.slideMenus > ul > li a,
+div.slidebar > div.slideMenus > ul > li a:link,
+div.slidebar > div.slideMenus > ul > li a:visited,
+div.slidebar > div.slideMenus > ul > li a:hover,
+div.slidebar > div.slideMenus > ul > li a:active {
+  color: inherit;
+}
 input[type="checkbox"] {
   display: none;
 }

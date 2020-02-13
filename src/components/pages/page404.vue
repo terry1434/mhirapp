@@ -58,7 +58,7 @@ div.page404 > div.container {
   background-size: 120%;
 }
 h1 {
-  font-size: 12em;
+  font-size: 20vw;
   color: #fff;
   text-align: center;
   letter-spacing: 10px;

@@ -1,5 +1,15 @@
 <template>
   <div id="app">
+    <el-button @click="drawer = true" type="primary" class="leftSlideBtn" v-if="isLogin">
+      <i class="fa fa-user"></i>
+    </el-button>
+    <el-drawer
+      :visible.sync="drawer"
+      :direction="direction"
+      size="340px"
+    >
+      <userinfo @cancelForm="cancelForm"></userinfo>
+    </el-drawer>
     <router-view />
   </div>
 </template>
@@ -7,12 +17,13 @@
 <script>
 import $ from "jQuery";
 import session from "./store/session";
+import userinfo from "../src/components/common/UserInfo";
 export default {
   name: "App",
   data() {
     return {
-      precent: 0,
-      delLoading: false
+      drawer: false,
+      direction: "ltr"
     };
   },
   beforeCreate() {
@@ -36,6 +47,24 @@ export default {
   mounted() {
     let loading = document.getElementsByClassName("container_loading")[0];
     if (loading) loading.classList.add("moveup");
+  },
+  computed: {
+    isLogin() {
+      return this.$store.state.userinfo.token;
+    }
+  },
+  methods: {
+    cancelForm() {
+      console.log("cancelForm");
+      this.drawer = false;
+      // this.$refs.elDrawer.$el.classList.toggle("slidehidden");
+      this.$router.push("/home");
+
+      // console.dir(this.$refs.elDrawer);
+    }
+  },
+  components: {
+    userinfo
   }
 };
 </script>
@@ -70,7 +99,7 @@ li {
   flex-direction: column;
   position: absolute;
   top: 0;
-  z-index: 99;
+  z-index: 10;
 }
 
 .loading {
@@ -347,6 +376,7 @@ li {
 }
 
 input[type="submit"] {
+  -webkit-appearance: none;
   border: none;
   padding: 7px 35px;
   cursor: pointer;
@@ -359,5 +389,33 @@ input[type="submit"] {
   width: 100%;
   opacity: 0.8;
   letter-spacing: 2px;
+}
+
+.leftSlideBtn {
+  padding: 0;
+  margin: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  z-index: 3;
+  height: calc(30% - 80px);
+  width: 30px;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px #dfe6e9;
+  transition: all 0.15s ease-in;
+}
+
+@media screen and (max-width: 684px) {
+  .leftSlideBtn {
+    height: calc(50% - 280px);
+    width: 15px;
+  }
 }
 </style>

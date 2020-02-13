@@ -4,28 +4,55 @@
     <hr />
     <form action class="editform">
       <div class="inputgroup">
-        <label for="username">用户名</label>
+        <label>用户名</label>
         <div class="inputline">
-          <input type="text" id="username" v-model="forminput.username" disabled />
-        </div>
-      </div>
-      <div class="inputgroup fileload">
-        <label for="imgload">头像上传</label>
-        <div class="inputline">
-          <upload id="imgload"></upload>
+          <input type="text" v-model="forminput.username" disabled />
         </div>
       </div>
       <div class="inputgroup">
-        <label for="username">入职年份</label>
+        <label>头像上传</label>
         <div class="inputline">
-          <sel :dataList="years" :labelProperty="'name'" @change="setYear"></sel>
-          <sel :dataList="months" :labelProperty="'name'" @change="setMonth"></sel>
-          <div class="sofar">至今：{{sofar}}</div>
+          <!-- <upload id="imgload"></upload> -->
+          <elUpload :action="'http://localhost:8080'"></elUpload>
         </div>
       </div>
       <div class="inputgroup">
-        <input type="submit" value="提交" />
-        <router-link to="/home" class="btnback">返回</router-link>
+        <label>入职年月</label>
+        <div class="inputline">
+          <!-- <sel :dataList="years" labelProperty="name" @change="setYear" selWidth="100"></sel>
+          <sel :dataList="months" labelProperty="name" @change="setMonth" selWidth="60"></sel>-->
+          <elDatepick
+            :type="'month'"
+            :placeholder="'请选择'"
+            :editable="false"
+            :clearable="false"
+            @returnVal="setFromTime"
+          ></elDatepick>
+          <div class="sofar" ref="sofar">入社：{{sofar}}</div>
+        </div>
+      </div>
+      <!-- <div class="inputgroup">
+        <div class="inputline">
+          
+        </div>
+      </div>-->
+      <div class="inputgroup">
+        <label>个人简介</label>
+        <el-input
+          type="textarea"
+          placeholder="请输入内容"
+          v-model="forminput.usermarks"
+          maxlength="100"
+          show-word-limit
+        ></el-input>
+      </div>
+      <div class="inputgroup">
+        <div class="inputline">
+          <!-- <input type="submit" value="提交" /> -->
+          <el-button type="submit">提交</el-button>
+          <!-- <router-link to="/home" class="btnback">返回</router-link> -->
+          <el-button>返回</el-button>
+        </div>
       </div>
     </form>
   </div>
@@ -34,85 +61,43 @@
 <script>
 import sel from "../common/Select";
 import upload from "../common/FileUpload";
+import elDatepick from "../common/EL_DateSelect";
+import elUpload from "../common/EL_Upload";
 export default {
   name: "userinfoedit",
   data() {
     return {
       forminput: {
         username: "",
-        year: "",
-        month: ""
+        fromTime: "",
+        usermarks: ""
       },
-      years: [
-        { name: "2015年", value: "2015" },
-        { name: "2016年", value: "2016" },
-        { name: "2017年", value: "2017" }
-      ],
-      months: [
-        { name: "1月", value: "1" },
-        { name: "2月", value: "2" },
-        { name: "3月", value: "3" },
-        { name: "4月", value: "4" },
-        { name: "5月", value: "5" },
-        { name: "6月", value: "6" },
-        { name: "7月", value: "7" },
-        { name: "8月", value: "8" },
-        { name: "9月", value: "9" },
-        { name: "10月", value: "10" },
-        { name: "11月", value: "11" },
-        { name: "12月", value: "12" }
-      ],
       sofar: ""
     };
   },
-  computed: {
-    selYear() {
-      return this.forminput.year;
-    },
-    selMonth() {
-      return this.forminput.month;
-    }
-  },
+  // computed: {
+  //   getFromTime() {
+  //     return this.forminput.fromTime;
+  //   }
+  // },
   methods: {
-    setYear(rst) {
-      console.log("setYear", rst);
-      this.forminput.year = rst.value.value;
-    },
-    setMonth(rst) {
-      console.log("setMonth", rst);
-      this.forminput.month = rst.value.value;
-    }
-  },
-  watch: {
-    selYear(val) {
-      if (this.selMonth == "") return;
-      let dt = new Date();
+    setFromTime(dtime) {
+      console.log("setFromTime", dtime);
+      this.forminput.fromTime = dtime;
+      let nowDate = new Date();
       let y, m;
-      y = dt.getFullYear() - val;
-      m = dt.getMonth() - this.forminput.month + 1;
+      y = nowDate.getFullYear() - dtime.getFullYear();
+      m = nowDate.getMonth() - dtime.getMonth() + 1;
+      console.log(`y:${y},m:${m}`);
       if (m < 0) {
-        m = 12 - this.forminput.month + dt.getMonth() + 1;
+        m = 12 - dtime.getMonth() + nowDate.getMonth() + 1;
         y = y - 1;
       }
       this.sofar = `${y}年${m}个月`;
-    },
-    selMonth(val) {
-      console.log("text", this.selMonth);
-      if (this.selYear == "") return;
-
-      let dt = new Date();
-      let y, m;
-      y = dt.getFullYear() - this.forminput.year;
-      m = dt.getMonth() - val + 1;
-      if (m < 0) {
-        m = 12 - val + dt.getMonth() + 1;
-        y = y - 1;
-      }
-      console.log("获取年月", dt.getFullYear(), val);
-      this.sofar = `${y}年${m}个月`;
+      this.$refs.sofar.style.display = "block";
     }
   },
-  components: { sel, upload }
+  components: { elDatepick, elUpload }
 };
 </script>
 
@@ -124,6 +109,7 @@ export default {
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
+  background-color: #f1f2f6;
 }
 h3 {
   margin-bottom: 10px;
@@ -135,8 +121,9 @@ hr {
   justify-self: center;
 }
 .editform {
-  margin: 20px;
-  width: 80%;
+  margin-top: 20px;
+  width: 100%;
+  min-width: 240px;
   height: 100%;
   align-self: center;
   justify-self: center;
@@ -146,35 +133,39 @@ hr {
   align-items: center;
   padding: 20px;
   border: 2px solid #ececec;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 .inputgroup {
-  width: 480px;
-  height: 40px;
+  width: 100%;
+  height: auto;
   box-sizing: border-box;
+  margin: 0 auto;
   margin-top: 5px;
   margin-bottom: 15px;
   display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
   align-items: center;
 }
 .inputgroup label {
   display: inline-block;
-  width: 100px;
+  min-width: 80px;
   height: 40px;
-  background-color: #e7f0f3;
-  text-align: center;
+  /* background-color: #1e90ff; */
+  text-align: left;
+  padding:0 12px 0 0;
   line-height: 40px;
-  border-radius: 5px;
-  margin-right: 15px;
+  border-radius: 4px;
+  /* margin-right: 15px; */
+  font-size:14px;
   box-sizing: border-box;
-  font-weight: 600;
-  color: #505050;
+  color:#606266;
+  align-self: flex-start;
 }
 .inputgroup .inputline {
   width: 100%;
-  height: 40px;
+  /* max-width: 250px; */
+  height: auto;
   /* border:1px solid black; */
   position: relative;
   padding: 0;
@@ -182,7 +173,6 @@ hr {
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  flex: 1 1;
 }
 .inputgroup .inputline input[type="text"] {
   outline: none;
@@ -192,55 +182,43 @@ hr {
   background-color: transparent;
   font-size: 1.2em;
   height: 40px;
-  width: 180px;
+  width: 100%;
+  max-width: 180px;
   -webkit-tap-highlight-color: transparent;
   color: #0e0e0e;
 }
 
-/* .inputgroup .inputline select {
-  outline: none;
-  -webkit-appearance: none;
-  width: 30%;
-  min-width: 75px;
-  height: 40px;
-  text-align: center;
-  padding: 0 12px;
-  position: relative;
-  border-top: 0;
-  border-right: 0;
-  border-left: 0;
-  border-bottom: 2px solid rgb(118, 118, 122);
-  background-color: transparent;
-  cursor: pointer;
-  font-weight: 600;
-} */
-/* .inputgroup .inputline select:nth-child(3) {
-  width: 20%;
-  min-width: 55px;
-}
-.inputgroup .inputline select + span {
-  margin-left: -10px;
-} */
-
-.fileload {
-  height: 180px;
+/* .fileload {
+  height: 220px;
+  max-height: 220px;
   line-height: 60px;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
-}
+} */
 
-.inputgroup .inputline .sofar {
-  flex-shrink: 0;
-  font-size: 13px;
-  color: #576574;
-  margin-left: 5px;
-  margin-top: 10px;
+#imgload {
   align-self: flex-start;
 }
-.inputgroup input[type="submit"] {
+.inputgroup .inputline .sofar {
+  flex-shrink: 0;
+  font-size: 14px;
+  color: #576574;
+  justify-content: center;
+  align-self: center;
+  text-align: center;
+  width: auto;
+  display: none;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+.inputgroup .inputline button[class$="submit"] {
   opacity: 1;
-  width: 120px;
+  width: 70px;
+  background-color: #0984e3;
+  color: #dfe6e9;
   margin-right: 10px;
+  flex-shrink: 1;
+  border-radius: 4px;
 }
 .inputgroup a {
   text-decoration: none;
@@ -253,13 +231,34 @@ hr {
   color: #dfe6e9;
   font-size: 18px;
   font-weight: bold;
-  border-radius: 2px;
+  border-radius: 4px;
   letter-spacing: 2px;
   text-align: center;
+  flex-shrink: 1;
 }
 /* .datalist {
   height: 40px;
   line-height: 40px;
 } */
+
+.inputgroup:nth-last-child(1) .inputline {
+  margin-left: 80px;
+}
+
+@media screen and (max-width: 684px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+  }
+  .container .subTitle {
+    display: none;
+  }
+  .inputgroup:nth-last-child(1) .inputline {
+    margin-left: 0;
+    justify-content: center;
+  }
+}
 </style>
 

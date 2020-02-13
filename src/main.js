@@ -5,12 +5,14 @@ import App from './App'
 import router from './router'
 import store from './store/store'
 import '../src/css/font-awesome.css'
-import 'element-ui/lib/theme-chalk/index.css'
-import { Message } from 'element-ui';
 
+import '../src/css/index.css'
+// import { Message } from 'element-ui';
+import ElementUI from 'element-ui';
 
+Vue.use(ElementUI);
 Vue.config.productionTip = true;
-Vue.prototype.$message = Message;
+// Vue.prototype.$message = Message;
 
 Vue.filter('snippet', function (item) {
   if (typeof item === "object") {

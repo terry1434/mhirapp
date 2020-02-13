@@ -1,5 +1,9 @@
 <template>
-  <div class="index" :class="{notLogin:!isLogin}">
+  <!-- <div class="index shrink" :class="{shrink:!isLogin}"> -->
+  <div class="index shrink">
+    <!-- <div class="userinfo" v-if="isLogin">
+
+    </div> -->
     <div class="nav">
       <div class="logo"></div>
       <dropdown
@@ -17,14 +21,11 @@
         :title="loginUser"
         :icon_after="'fa fa-angle-down'"
         :itemlist="getLoginMenu"
-        :dropWidth="'120px'"
+        :dropWidth="'130px'"
         @callback="signOut"
       ></dropdown>
     </div>
-    <div class="userinfo" v-if="isLogin">
-      <userinfo></userinfo>
-    </div>
-    <div class="slideLeft" v-if="isLogin">
+    <div class="slideRight" v-if="isLogin">
       <slidebar></slidebar>
     </div>
     <div class="container">
@@ -46,8 +47,8 @@ import JP from "../../lang/_JP";
 import EN from "../../lang/_EN";
 import dropdown from "../common/Dropdown";
 import slidebar from "../common/SlideBar";
-import userinfo from "../common/UserInfo";
-import userinfoedit from "../pages/UserInfoEdit"
+
+import userinfoedit from "../pages/UserInfoEdit";
 export default {
   name: "index",
   data() {
@@ -56,7 +57,8 @@ export default {
         { key: "CN", value: "简体中文" },
         { key: "JP", value: "日本語" },
         { key: "EN", value: "English" }
-      ]
+      ],
+      showuserinfo: true
     };
   },
   computed: {
@@ -84,6 +86,13 @@ export default {
     }
   },
   methods: {
+    handleClose(done) {
+      this.$confirm("确认关闭？")
+        .then(_ => {
+          done();
+        })
+        .catch(_ => {});
+    },
     changeLanguage(value) {
       let language = null;
       switch (value) {
@@ -125,12 +134,10 @@ export default {
   },
   components: {
     dropdown,
-    userinfo,
     slidebar,
     userinfoedit
   }
 };
-
 </script>
 
 <style scoped>
@@ -141,7 +148,7 @@ export default {
 
 .v-enter-active,
 .v-leave-active {
-  transition: all .35s ease;
+  transition: all 0.35s ease;
 }
 
 .index {
@@ -151,14 +158,15 @@ export default {
   display: grid;
   grid-template-rows: 60px 1fr 60px;
   grid-template-columns: 1fr 3fr 120px;
+  /* grid-template-columns: 1fr 10fr 1fr; */
   grid-template-areas:
     "nav nav nav"
-    "userInfo main slideLeft"
+    "userInfo main slideRight"
     "foot foot foot";
   row-gap: 10px;
-  background-color:#f5f6f7;
+  background-color: #f1f2f6;
 }
-.notLogin {
+.shrink {
   grid-template-columns: 1fr 10fr 1fr;
 }
 .index .nav {
@@ -169,7 +177,7 @@ export default {
   align-items: center;
   width: 100%;
   height: 55px;
-  background-color: rgba(21, 1, 126, 1);
+  background-color: #15017e;
   z-index: 1;
 }
 .index .nav div.logo {
@@ -182,23 +190,33 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
-.index .userinfo{
-  grid-area:userInfo;
-  padding:0 25px;
-  border-radius:10px;
-  transition:all 0.5s linear;
-  transform:rotateY(0deg);
+.index .userinfo {
+  position: absolute;
+  grid-area: userInfo;
+  padding: 0 25px;
+  border-radius: 10px;
+  transition: all 0.5s linear;
+  transform: rotateY(0deg);
+  /* width:100%;
+  box-sizing:border-box; */
 }
-
-
-.index .slideLeft {
-  grid-area: slideLeft;
+.index #toggle {
+  display: none;
+}
+.index #toggle + label {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.index .slideRight {
+  grid-area: slideRight;
   background-color: transparent;
   margin: 0 10px;
   /* border:1px solid #e0e0e0; */
   border-radius: 5px;
 }
-.index>.container {
+.index > .container {
   grid-area: main;
   position: relative;
   width: 100%;
@@ -215,7 +233,7 @@ export default {
   align-items: center;
   flex-direction: column;
   padding: 18px 0;
-  background-color: #eee;
+  background-color: #f1f2f6;
 }
 .foot h4,
 .foot p {
@@ -225,6 +243,15 @@ export default {
   color: #999;
   margin-bottom: 6px;
 }
+
+.drawerClass {
+  width: 30vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 @media screen and (max-width: 684px) {
   .index .nav .dropdown a {
     margin-right: 4em;

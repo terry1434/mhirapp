@@ -9,8 +9,7 @@
         class="header-upload-btn user-header-com"
       />
       <img alt :src="imgStr" class="user-header-img user-header-com" />
-      <p class="tip">
-        图片限制50kb
+      <p class="tip" v-hiden ref="tip">
         <span class="error">{{errorStr}}</span>
       </p>
     </div>
@@ -26,6 +25,13 @@ export default {
       imgStr: require("../../imgs/upload.png"),
       errorStr: ""
     };
+  },
+  directives: {
+    hiden: {
+      bind(el) {
+        el.style.display = "none";
+      }
+    }
   },
   methods: {
     onchangeImgFun(e) {
@@ -59,7 +65,8 @@ export default {
         };
       } else {
         console.log("大小不合适");
-        _this.errorStr = "图片大小超出范围";
+        _this.errorStr = "图片大小超出范围(50X50)";
+        _this.$refs.tip.style.display="block";
       }
     }
   }
@@ -73,8 +80,10 @@ export default {
   display: inline-block;
 }
 .user-header-com {
-  width: 144px;
-  height: 144px;
+  max-width: 180px;
+  width: 100%;
+  max-height: 180px;
+  height: 100%;
   display: inline-block;
 }
 .header-upload-btn {
@@ -88,13 +97,21 @@ export default {
 .tip {
   font-size: 14px;
   color: #666;
-  margin-top: -25px;
+  margin-top: -10px;
+  height: 60px;
+  position: relative;
+  overflow: auto;
+  width: 100%;
+  height: 40px;
+  line-height: 14px;
 }
 /* error是用于错误提示 */
 .error {
   font-size: 12px;
   color: tomato;
   margin-left: 10px;
+  height: 12px;
+  line-height: 12px;
 }
 </style>
 

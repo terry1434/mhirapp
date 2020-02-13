@@ -61,16 +61,18 @@ export default {
 <style scoped>
 .zq-drop-list {
   display: inline-block;
-  min-width: 100px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 100px;
   position: relative;
   cursor: pointer;
+  z-index:99;
+  margin-left:5px;
 }
 span {
   display: block;
   height: 35px;
   line-height: 35px;
-  background: #f1f1f1;
+  background: #ced6e0;
   font-size: 14px;
   text-align: center;
   color: #333333;
@@ -85,7 +87,8 @@ ul {
   top: 30px;
   left: 0;
   width: 100%;
-  height: 210px;
+  height:auto;
+  max-height: 210px;
   margin: 0;
   padding: 0;
   border: solid 1px #f1f1f1;

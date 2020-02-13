@@ -29,7 +29,7 @@ const router = new Router({
           path: "/userinfoedit",
           name: "userinfoedit",
           component: userinfoedit
-        }
+        },
       ]
     },
     { path: '/404', component: page404, name: 'page404' },
