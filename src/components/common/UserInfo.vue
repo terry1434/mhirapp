@@ -72,15 +72,15 @@ export default {
   left:50%;
   transform: translate(-50%,-50%);
   display: grid;
-  /* width: 100%; */
+  width: 100%;
   min-width: 90%;
   margin: 0 auto;
   overflow: hidden;
   grid-template-rows: 60px 260px 260px 1fr;
   grid-template-areas: "title" "user" "info" "history";
   background-color: #e7f0f3;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  /* border-top-left-radius: 5px;
+  border-top-right-radius: 5px; */
   height: auto;
 }
 .title {
@@ -148,9 +148,9 @@ export default {
 .info .adminCtl {
   position: relative;
   justify-self: flex-end;
-  margin-left: -20px;
+  margin-left: -21px;
   margin-top: 10px;
-  width: calc(100% + 20px);
+  width: calc(100% + 22px);
   height: 40px;
   background-color: #e17055;
   text-align: center;
@@ -185,32 +185,4 @@ label {
   width: 80px;
 }
 
-/* .copy_leftSlideBtn {
-  padding: 0;
-  margin: 0;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  position: fixed;
-  top: 70px;
-  left: 340px;
-  z-index: 3;
-  height: calc(30% - 80px);
-  width: 30px;
-  opacity: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.15s ease-in;
-  background-color:#15017E;
-  border-color:#15017E;
-  color:#FFF;
-  pointer-events: none;
-} */
-/* @media screen and (max-width: 684px) {
-  div.container {
-    display: none;
-  }
-} */
 </style>

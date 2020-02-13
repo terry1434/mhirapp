@@ -38,7 +38,6 @@ div.slidebar {
   align-items: center;
   width: 100%;
   height: 100%;
-  /* background-color: aqua; */
   transform: scale(1);
 }
 div.slidebar > label.ctlLabel {
@@ -92,16 +91,23 @@ div.slidebar > div.slideMenus > ul > li {
 }
 div.slidebar > div.slideMenus > ul > li:hover {
   box-shadow: 0 0 5px #636e72;
-  background-color: #0984e3;
-  color: #dfe6e9;
+  background-color: #f5f6fa;
+  /* color: #dfe6e9; */
   cursor: pointer;
 }
+div.slidebar > div.slideMenus > ul > li:hover i {
+  font-size: 18px;
+}
+
 div.slidebar > div.slideMenus > ul > li a,
 div.slidebar > div.slideMenus > ul > li a:link,
 div.slidebar > div.slideMenus > ul > li a:visited,
 div.slidebar > div.slideMenus > ul > li a:hover,
 div.slidebar > div.slideMenus > ul > li a:active {
   color: inherit;
+  display:block;
+  width: 100%;
+  height: 100%;
 }
 input[type="checkbox"] {
   display: none;

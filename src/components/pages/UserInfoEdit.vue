@@ -51,9 +51,16 @@
           <!-- <input type="submit" value="提交" /> -->
           <el-button type="submit">提交</el-button>
           <!-- <router-link to="/home" class="btnback">返回</router-link> -->
-          <el-button>返回</el-button>
+          <el-button @click="back">返回</el-button>
         </div>
       </div>
+      <el-dialog title="提示" :visible.sync="dialogVisible" width="340px">
+        <span>有项目已更新，确定返回？</span>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="goback">确 定</el-button>
+        </span>
+      </el-dialog>
     </form>
   </div>
 </template>
@@ -67,6 +74,8 @@ export default {
   name: "userinfoedit",
   data() {
     return {
+      dialogVisible: false,
+      ischange: false,
       forminput: {
         username: "",
         fromTime: "",
@@ -74,6 +83,28 @@ export default {
       },
       sofar: ""
     };
+  },
+  computed: {
+    getUsername() {
+      return this.forminput.username;
+    },
+    getFromTime() {
+      return this.forminput.fromTime;
+    },
+    getUsermarks() {
+      return this.forminput.usermarks;
+    }
+  },
+  watch: {
+    getUsername() {
+      this.ischange = true;
+    },
+    getFromTime() {
+      this.ischange = true;
+    },
+    getUsermarks() {
+      this.ischange = true;
+    }
   },
   // computed: {
   //   getFromTime() {
@@ -95,6 +126,16 @@ export default {
       }
       this.sofar = `${y}年${m}个月`;
       this.$refs.sofar.style.display = "block";
+    },
+    back() {
+      if (this.ischange) {
+        this.dialogVisible = true;
+      } else {
+        this.$router.go(-1);
+      }
+    },
+    goback() {
+      this.$router.go(-1);
     }
   },
   components: { elDatepick, elUpload }
@@ -153,13 +194,13 @@ hr {
   height: 40px;
   /* background-color: #1e90ff; */
   text-align: left;
-  padding:0 12px 0 0;
+  padding: 0 12px 0 0;
   line-height: 40px;
   border-radius: 4px;
   /* margin-right: 15px; */
-  font-size:14px;
+  font-size: 14px;
   box-sizing: border-box;
-  color:#606266;
+  color: #606266;
   align-self: flex-start;
 }
 .inputgroup .inputline {
@@ -258,6 +299,9 @@ hr {
   .inputgroup:nth-last-child(1) .inputline {
     margin-left: 0;
     justify-content: center;
+  }
+  .sofar {
+    margin-top: 7px;
   }
 }
 </style>

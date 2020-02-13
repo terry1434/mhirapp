@@ -6,7 +6,7 @@
     <el-drawer
       :visible.sync="drawer"
       :direction="direction"
-      size="340px"
+      size="320px"
     >
       <userinfo @cancelForm="cancelForm"></userinfo>
     </el-drawer>
@@ -414,8 +414,10 @@ input[type="submit"] {
 
 @media screen and (max-width: 684px) {
   .leftSlideBtn {
-    height: calc(50% - 280px);
-    width: 15px;
+    height:71px;
+    width: 20px;
+    
+    text-align:center;
   }
 }
 </style>
