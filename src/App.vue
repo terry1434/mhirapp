@@ -3,14 +3,10 @@
     <el-button @click="drawer = true" type="primary" class="leftSlideBtn" v-if="isLogin">
       <i class="fa fa-user"></i>
     </el-button>
-    <el-drawer
-      :visible.sync="drawer"
-      :direction="direction"
-      size="320px"
-    >
+    <el-drawer :visible.sync="drawer" :direction="direction" size="320px">
       <userinfo @cancelForm="cancelForm"></userinfo>
     </el-drawer>
-    <router-view />
+    <router-view v-if="isRouterAlive" />
   </div>
 </template>
 
@@ -20,8 +16,14 @@ import session from "./store/session";
 import userinfo from "../src/components/common/UserInfo";
 export default {
   name: "App",
+  provide() {
+    return {
+      reload: this.reload
+    };
+  },
   data() {
     return {
+      isRouterAlive: true,
       drawer: false,
       direction: "ltr"
     };
@@ -54,6 +56,12 @@ export default {
     }
   },
   methods: {
+    reload() {
+      this.isRouterAlive = false;
+      this.$nextTick(function() {
+        this.isRouterAlive = true;
+      });
+    },
     cancelForm() {
       console.log("cancelForm");
       this.drawer = false;
@@ -414,10 +422,10 @@ input[type="submit"] {
 
 @media screen and (max-width: 684px) {
   .leftSlideBtn {
-    height:71px;
+    height: 71px;
     width: 20px;
-    
-    text-align:center;
+
+    text-align: center;
   }
 }
 </style>

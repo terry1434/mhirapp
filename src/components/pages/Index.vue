@@ -45,6 +45,7 @@
 import CN from "../../lang/_CN";
 import JP from "../../lang/_JP";
 import EN from "../../lang/_EN";
+import navmenu from "../../components/common/NavMenu";
 import dropdown from "../common/Dropdown";
 import slidebar from "../common/SlideBar";
 
@@ -81,7 +82,7 @@ export default {
       for (let item in obj) {
         arr.push({ key: item, value: obj[item] });
       }
-      console.log(arr[0]);
+      // console.log(arr[0]);
       return arr;
     }
   },
@@ -133,6 +134,7 @@ export default {
     }
   },
   components: {
+    navmenu,
     dropdown,
     slidebar,
     userinfoedit

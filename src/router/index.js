@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import index from '@/components/pages/Index'
 import login from '@/components/common/Login'
 import home from '@/components/pages/Home'
+import menu from '@/components/pages/Menu'
 import userinfoedit from '@/components/pages/userinfoedit'
 import page404 from '@/components/pages/page404'
 Vue.use(Router)
@@ -24,6 +25,11 @@ const router = new Router({
           path: "/home",
           name: "home",
           component: home
+        },
+        {
+          path:"/menu",
+          name:"menu",
+          component:menu
         },
         {
           path: "/userinfoedit",
