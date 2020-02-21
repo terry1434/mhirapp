@@ -6,7 +6,9 @@
     <el-tab-pane label="问卷管理"></el-tab-pane>
     <el-tab-pane label="用户管理"></el-tab-pane>
     <el-tab-pane label="个人管理">
-      <userinfoedit></userinfoedit>
+      <keep-alive>
+        <userinfoedit></userinfoedit>
+      </keep-alive>
     </el-tab-pane>
   </el-tabs>
 </template>
