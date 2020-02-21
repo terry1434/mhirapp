@@ -12,7 +12,9 @@ const store = new Vuex.Store({
             username: session.getSession("username"),
             token: session.getSession("token")
         },
-        lang: LANGUAGE[session.getLocal('language')] || CN
+        lang: LANGUAGE[session.getLocal('language')] || CN,
+        clientWidth: "",
+        mode: "brower"
     },
     mutations: {
         saveuser(state, payload) {
@@ -21,6 +23,13 @@ const store = new Vuex.Store({
         setLanguage(state, payload) {
             state.lang = payload.payload.language;
             session.setLocal("language", payload.payload.value);
+        },
+        //设定页面窗体大小
+        setClientWidth(state, payload) {
+            state.clientWidth = payload.payload;
+        },
+        setAccessMode(state, payload) {
+            state.mode = payload.payload;
         },
         signOut(state) {
             session.clearSession(['username', 'token']);

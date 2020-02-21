@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <el-row>
-      <el-col :span="8" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 2 : 0">
+      <el-col :span="5" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 2 : 0">
         <el-card :body-style="{ padding: '0px' }">
           <img
             src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
@@ -26,43 +26,44 @@
   height: 100%;
 }
 
-  .time {
-    font-size: 13px;
-    color: #999;
-  }
-  
-  .bottom {
-    margin-top: 13px;
-    line-height: 12px;
-  }
+.time {
+  font-size: 13px;
+  color: #999;
+}
 
-  .button {
-    padding: 0;
-    float: right;
-  }
+.bottom {
+  margin-top: 13px;
+  line-height: 12px;
+}
 
-  .image {
-    width: 100%;
-    display: block;
-  }
+.button {
+  padding: 0;
+  float: right;
+}
 
-  .clearfix:before,
-  .clearfix:after {
-      display: table;
-      content: "";
-  }
-  
-  .clearfix:after {
-      clear: both
-  }
+.image {
+  width: 100%;
+  display: block;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both;
+}
 </style>
 
 <script>
 export default {
+  name:"menucard",
   data() {
     return {
       currentDate: new Date()
     };
   }
-}
+};
 </script>

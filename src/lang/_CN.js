@@ -13,6 +13,6 @@ export default {
         err2: "请输入密码",
     },
     usermenu: {
-        msg1: { value: "登出", icon: "fa fa-sign-out" }
+        msg1: { value: "登出"}
     }
 }

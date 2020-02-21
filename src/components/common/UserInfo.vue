@@ -12,7 +12,6 @@
       </div>
       <div class="username">
         <span>{{username}}</span>
-        <!-- <router-link to="/userinfoedit">修改</router-link> -->
       </div>
     </div>
     <div class="info">

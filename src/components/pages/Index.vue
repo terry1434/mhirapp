@@ -5,7 +5,7 @@
 
     </div> -->
     <div class="nav">
-      <div class="logo"></div>
+      <div class="logo"><router-link to="/home"><img src="../../imgs/webtitle.png" alt=""></router-link></div>
       <dropdown
         v-if="!isLogin"
         :icon_before="'fa fa-language fa-1x'"
@@ -21,7 +21,7 @@
         :title="loginUser"
         :icon_after="'fa fa-angle-down'"
         :itemlist="getLoginMenu"
-        :dropWidth="'130px'"
+        :dropWidth="'100px'"
         @callback="signOut"
       ></dropdown>
     </div>
@@ -80,7 +80,7 @@ export default {
       let obj = this.$store.state.lang.usermenu;
 
       for (let item in obj) {
-        arr.push({ key: item, value: obj[item] });
+        arr.push({ key: item, value: obj[item].value });
       }
       // console.log(arr[0]);
       return arr;
@@ -180,8 +180,13 @@ export default {
   width: 100%;
   height: 55px;
   background-color: #15017e;
-  z-index: 1;
+  z-index: 999;
 }
+.index .nav>div:last-child{
+  margin-right:10px;
+}
+
+
 .index .nav div.logo {
   width: 150px;
   height: 100%;
@@ -191,7 +196,21 @@ export default {
   background-image: url(../../imgs/logo2.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  position:relative;
 }
+.index .nav div.logo>a{
+  display:block;
+  width:100%;
+  height:100%;
+}
+.index .nav div.logo img{
+  position: absolute;
+  width:100%;
+  top:20%;
+  left:90%;
+}
+
+
 .index .userinfo {
   position: absolute;
   grid-area: userInfo;

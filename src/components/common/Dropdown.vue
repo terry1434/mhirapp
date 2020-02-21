@@ -1,12 +1,12 @@
 
 <template>
-  <div class="dropdown">
+  <div class="dropdown" :style="'width:'+dropWidth">
     <a href="javascript:void(0)" ref="dta">
       <i :class="icon_before" v-if="icon_before"></i>
       {{title | snippet}}
       <i :class="icon_after" v-if="icon_after"></i>
     </a>
-    <ul class="dropdownItems" :style="'width:'+dropWidth" ref="dropdownItems">
+    <ul class="dropdownItems" ref="dropdownItems">
       <li v-for="item in itemlist" :key="item.key" class="dropdownItem">
         <a
           v-if="item.value.icon"
@@ -59,24 +59,20 @@ export default {
 <style scoped>
 .dropdown {
   position: relative;
-  width: 140px;
+  margin-right:10px;
   height: 60px;
   line-height: 60px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
-  float: right;
+  font-size:14px;
 }
 .dropdown > a {
-  position: relative;
-  display: block;
+  display:block;
+  position: absolute;
   color: #fff;
   text-decoration: none;
+  right:0;
 }
 .dropdown a:hover + .dropdownItems {
   display: block;
-  position: relative;
 }
 .dropdownItems:before {
   content: "";
@@ -88,37 +84,35 @@ export default {
   left: auto;
 }
 .dropdownItems {
-  display: none;
-  position: relative;
-  width: 200px;
+  display: none;/*none*/
+  position: absolute;
+  top:85%;
+  right:0;
+  width: auto;
   height: auto;
   background-color: #f8f8f8;
   border: 1px solid #e1e4e8;
   border-radius: 5px;
   padding: 5px 10px;
-  margin-top: -10px;
-  transform: translateX(-30%);
 }
 .dropdownItems:hover {
   display: block;
-  position: relative;
 }
 
 .dropdownItems .dropdownItem {
   position: relative;
-  width: 100%;
+  width: auto;
   height: 25px;
   line-height: 25px;
 }
 .dropdownItems .dropdownItem a {
-  position: absolute;
+  position: relative;
   color: #000;
   text-decoration: none;
-  width: 100%;
-  text-align: center;
+  width: auto;
+  box-sizing:border-box;
 }
 .dropdownItems .dropdownItem a:hover {
-  color: #113;
   font-weight: 700;
 }
 </style>

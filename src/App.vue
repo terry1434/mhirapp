@@ -13,12 +13,15 @@
 <script>
 import $ from "jQuery";
 import session from "./store/session";
-import userinfo from "../src/components/common/UserInfo";
+// import userinfo from "../src/components/common/UserInfo";
 export default {
   name: "App",
   provide() {
+    //provide/inject 祖先元素与子孙元素间的观察者模式
     return {
       reload: this.reload
+      // clientWidth: this.clientWidth,
+      // mode: this.getClientMode
     };
   },
   data() {
@@ -26,7 +29,19 @@ export default {
       isRouterAlive: true,
       drawer: false,
       direction: "ltr"
+      // clientWidth: document.body.clientWidth,
+      // clientMode: ""
     };
+  },
+  computed: {
+    // getClientMode() {
+    //   return this.clientMode;
+    // }
+  },
+  watch: {
+    clientMode(val) {
+      console.log(`App.vue watch clientMode : ${val}`);
+    }
   },
   beforeCreate() {
     if (session.getSession("token") == undefined) {
@@ -46,7 +61,29 @@ export default {
       $(document.body).append(element);
     }
   },
+  created() {
+    const reg = new RegExp(
+      "Android|webOS|iPhone|iPad|iPod|BlackBerry|opera mini|opera mobile|appleWebkit.*mobile|mobile",
+      "i"
+    );
+    if (reg.test(navigator.userAgent)) {
+      this.$store.commit({
+        type: "setAccessMode",
+        payload: "mobile"
+      });
+    } else {
+      this.$store.commit({
+        type: "setAccessMode",
+        payload: "brower"
+      });
+    }
+    // console.log(`App.vue created ${this.clientMode}`);
+  },
   mounted() {
+
+    // console.log(`App.vue mounted.`);
+    this.clientResize();
+
     let loading = document.getElementsByClassName("container_loading")[0];
     if (loading) loading.classList.add("moveup");
   },
@@ -55,24 +92,56 @@ export default {
       return this.$store.state.userinfo.token;
     }
   },
+  watch: {
+    // '$store.state.clientWidth':function(val){
+    //   console.log(`App.vue watch clientWidth : ${val}`);
+    // }
+  },
   methods: {
+    clientResize() {
+      const _self = this;
+      _self.$store.commit({
+        type: "setClientWidth",
+        payload: document.body.clientWidth
+      });
+      window.onresize = function() {
+        const width = document.body.clientWidth;
+        // console.log(`App.vue ${width}`);
+        // return (() => {
+        //   this.clientWidth = document.body.clientWidth;
+        // })();
+        _self.$store.commit({
+          type: "setClientWidth",
+          payload: width
+        });
+        // console.log(`App.vue window.onresize ${width}`);
+      };
+    },
     reload() {
       this.isRouterAlive = false;
       this.$nextTick(function() {
         this.isRouterAlive = true;
       });
     },
+    // getClientMode() {
+    //   // this.$nextTick(function() {
+    //   //   console.log(` nextTick getClientMode : ${this.userAgent}`);
+    //   // });
+    //   console.log(`getClientMode : ${this.userAgent}`);
+    //   return this.userAgent;
+    // },
     cancelForm() {
-      console.log("cancelForm");
+      // console.log("cancelForm");
       this.drawer = false;
       // this.$refs.elDrawer.$el.classList.toggle("slidehidden");
-      this.$router.push("/home");
+      this.$router.push("/sitemanage");
 
       // console.dir(this.$refs.elDrawer);
     }
   },
   components: {
-    userinfo
+    // userinfo
+    'userinfo': () => import('../src/components/common/UserInfo')
   }
 };
 </script>
@@ -84,6 +153,7 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none;
 }
 
 body {
@@ -107,7 +177,7 @@ li {
   flex-direction: column;
   position: absolute;
   top: 0;
-  z-index: 10;
+  z-index: 99999;
 }
 
 .loading {

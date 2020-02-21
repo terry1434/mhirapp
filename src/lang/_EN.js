@@ -13,6 +13,6 @@ export default {
         err2: "Please enter your password ",
     },
     usermenu: {
-        msg1: { value: "Sign Out", icon: "fa fa-sign-out" }
+        msg1: { value: "Sign Out"}
     }
 }

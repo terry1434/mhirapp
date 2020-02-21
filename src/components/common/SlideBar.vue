@@ -14,14 +14,14 @@
           </router-link>
         </li>
         <li title="修改个人信息">
-          <router-link to="/userinfoedit">
+          <router-link to="/sitemanage/useredifinfo">
             <i class="fa fa-pencil fa-fw"></i>
           </router-link>
         </li>
-        <li title="快速问卷" disabled>
+        <li title="快速问卷">
           <i class="fa fa-file-text-o"></i>
         </li>
-        <li title="网站管理" disabled>
+        <li title="网站管理">
           <i class="fa fa-wrench"></i>
         </li>
       </ul>

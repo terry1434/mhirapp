@@ -49,7 +49,7 @@
       <div class="inputgroup">
         <div class="inputline">
           <!-- <input type="submit" value="提交" /> -->
-          <el-button type="submit">提交</el-button>
+          <el-button type="submit" @click="submit">提交</el-button>
           <!-- <router-link to="/home" class="btnback">返回</router-link> -->
           <el-button @click="back">返回</el-button>
         </div>
@@ -66,8 +66,8 @@
 </template>
 
 <script>
-import sel from "../common/Select";
-import upload from "../common/FileUpload";
+// import sel from "../common/Select";
+// import upload from "../common/FileUpload";
 import elDatepick from "../common/EL_DateSelect";
 import elUpload from "../common/EL_Upload";
 export default {
@@ -113,7 +113,6 @@ export default {
   // },
   methods: {
     setFromTime(dtime) {
-      console.log("setFromTime", dtime);
       this.forminput.fromTime = dtime;
       let nowDate = new Date();
       let y, m;
@@ -136,6 +135,17 @@ export default {
     },
     goback() {
       this.$router.go(-1);
+    },
+    submit(){
+      const loading = this.$loading({
+          lock: true,
+          text: 'Loading',
+          spinner: 'el-icon-loading',
+          background: 'rgba(255, 255, 255, 0.7)'
+        });
+        setTimeout(() => {
+          loading.close();
+        }, 2000);
     }
   },
   components: { elDatepick, elUpload }
