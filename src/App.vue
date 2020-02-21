@@ -43,29 +43,30 @@ export default {
       console.log(`App.vue watch clientMode : ${val}`);
     }
   },
-  beforeCreate() {
-    if (session.getSession("token") == undefined) {
-      let element = $(`
-                <div class="container_loading">
-                <div class="loading">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-            </div>
-    `);
-      $(document.body).append(element);
-    }
-  },
+  // beforeCreate() {
+  //   if (session.getSession("token") == undefined) {
+  //     let element = $(`
+  //               <div class="container_loading">
+  //               <div class="loading">
+  //                   <div></div>
+  //                   <div></div>
+  //                   <div></div>
+  //                   <div></div>
+  //                   <div></div>
+  //                   <div></div>
+  //                   <div></div>
+  //               </div>
+  //           </div>
+  //   `);
+  //     $(document.body).append(element);
+  //   }
+  // },
   created() {
     const reg = new RegExp(
       "Android|webOS|iPhone|iPad|iPod|BlackBerry|opera mini|opera mobile|appleWebkit.*mobile|mobile",
       "i"
     );
+    //判断当前响应用户的设备信息（浏览器/手机）
     if (reg.test(navigator.userAgent)) {
       this.$store.commit({
         type: "setAccessMode",
@@ -84,8 +85,8 @@ export default {
     // console.log(`App.vue mounted.`);
     this.clientResize();
 
-    let loading = document.getElementsByClassName("container_loading")[0];
-    if (loading) loading.classList.add("moveup");
+    // let loading = document.getElementsByClassName("container_loading")[0];
+    // if (loading) loading.classList.add("moveup");
   },
   computed: {
     isLogin() {
@@ -167,141 +168,7 @@ ul,
 li {
   list-style: none;
 }
-.container_loading {
-  width: 100vw;
-  height: 100vh;
-  background-color: #46b3e6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  position: absolute;
-  top: 0;
-  z-index: 99999;
-}
 
-.loading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 280px;
-  height: 45px;
-}
-
-.loading div {
-  position: relative;
-  height: 0;
-  width: 30px;
-  animation-name: loading;
-  animation-iteration-count: infinite;
-  animation-duration: 1.2s;
-  background-color: #ffffff;
-  color: #ffffff;
-}
-
-.loading div:nth-child(1) {
-  animation-delay: 0.1s;
-}
-
-.loading div:nth-child(1):after {
-  content: "L";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: -50px;
-  text-align: center;
-  font-size: 28px;
-}
-
-.loading div:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.loading div:nth-child(2):after {
-  content: "o";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: -50px;
-  text-align: center;
-  font-size: 28px;
-}
-
-.loading div:nth-child(3) {
-  animation-delay: 0.3s;
-}
-
-.loading div:nth-child(3):after {
-  content: "a";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: -50px;
-  text-align: center;
-  font-size: 28px;
-}
-
-.loading div:nth-child(4) {
-  animation-delay: 0.4s;
-}
-
-.loading div:nth-child(4):after {
-  content: "d";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: -50px;
-  text-align: center;
-  font-size: 28px;
-}
-
-.loading div:nth-child(5) {
-  animation-delay: 0.5s;
-}
-
-.loading div:nth-child(5):after {
-  content: "i";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: -50px;
-  text-align: center;
-  font-size: 28px;
-}
-
-.loading div:nth-child(6) {
-  animation-delay: 0.6s;
-}
-
-.loading div:nth-child(6):after {
-  content: "n";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: -50px;
-  text-align: center;
-  font-size: 28px;
-}
-
-.loading div:nth-child(7) {
-  animation-delay: 0.7s;
-}
-
-.loading div:nth-child(7):after {
-  content: "g";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: -50px;
-  text-align: center;
-  font-size: 28px;
-}
-
-.moveup {
-  animation: moveup 1s linear;
-  animation-delay: 0.6s;
-  animation-fill-mode: forwards;
-}
 
 @keyframes loading {
   0% {
