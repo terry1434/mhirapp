@@ -67,9 +67,9 @@ export default {
     //   this.setCarouselOptions();
     // });
 
-    if (session.getSession("token") == "") {
-      this.$router.push("/login");
-    }
+    // if (session.getSession("token") == "") {
+    //   this.$router.push("/login");
+    // }
   },
   watch: {
     "$store.state.clientWidth": {
@@ -102,7 +102,7 @@ export default {
   methods: {
     setCarouselOptions(val, oldVal) {
       const width = this.$store.state.clientWidth;
-      console.log(width);
+      // console.log(width);
       this.carousleOption.carouselType = width < 684 ? "" : "card";
       this.carousleOption.height = width < 684 ? "200px" : "300px";
       this.carousleOption.arrow = width < 684 ? "always" : "hover";

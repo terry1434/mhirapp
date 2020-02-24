@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import $ from "jQuery";
+// import $ from "jQuery";
 import session from "./store/session";
 // import userinfo from "../src/components/common/UserInfo";
 export default {

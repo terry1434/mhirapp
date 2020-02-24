@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '@/store/store'
 import index from '@/components/pages/Index'
 import login from '@/components/common/Login'
 import home from '@/components/pages/Home'
@@ -7,6 +8,7 @@ import menu from '@/components/pages/Menu'
 import sitemanage from '@/components/pages/SiteManage'
 import userinfoedit from '@/components/pages/UserInfoEdit'
 import page404 from '@/components/pages/page404'
+
 Vue.use(Router)
 
 const router = new Router({
@@ -38,7 +40,8 @@ const router = new Router({
           component: sitemanage,
           children: [
             { path: "/sitemanage/useredifinfo", name: "usereditinfo", component: userinfoedit }
-          ]
+          ],
+
         },
       ]
     },
@@ -47,23 +50,54 @@ const router = new Router({
   mode: "history"
 })
 
+
+
+
 //挂载路由导航守卫
 //to:跳转前路径
 //from:跳转后的路径
 //next:函数，表示放行
 router.beforeEach((to, from, next) => {
-  if (to.path === "/login") {
-    return next();
-  } else {
-    if (to.matched.length == 0) {
-      next('/404');
-    }
-  }
+
 
   //获取token
   const token = window.sessionStorage.getItem('token');
-  if (!token) return next('/login');
-  next();
+  console.log(token);
+  // if (!token) next('/login');
+
+  //页面内容一旦编辑过，跳转页面时，显示提示消息
+  if (store.state.isEdited) {
+    store.commit({
+      type: "setDialogVisible",
+      payload: true
+    });
+    next(false);
+  } else {
+    if (store.state.dialogVisible) {
+      store.commit({
+        type: "setDialogVisible",
+        payload: false
+      });
+    }
+    if (to.matched.length == 0) {
+      next('/404');
+    }
+    next(true);
+  }
+
+  // if (to.path === "/login") {
+  //   return next();
+  // } else {
+  //   if (to.matched.length == 0) {
+  //     next('/404');
+  //   }
+  // }
+
+  //不存在的页面，强制跳转至404页
+
+
+  // next();
+
 })
 
 export default router

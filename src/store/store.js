@@ -14,7 +14,9 @@ const store = new Vuex.Store({
         },
         lang: LANGUAGE[session.getLocal('language')] || CN,
         clientWidth: "",
-        mode: "brower"
+        mode: "brower",
+        isEdited: false,
+        dialogVisible: false
     },
     mutations: {
         saveuser(state, payload) {
@@ -30,6 +32,12 @@ const store = new Vuex.Store({
         },
         setAccessMode(state, payload) {
             state.mode = payload.payload;
+        },
+        setIsEdited(state, payload) {
+            state.isEdited = payload.payload;
+        },
+        setDialogVisible(state, payload) {
+            state.dialogVisible = payload.payload;
         },
         signOut(state) {
             session.clearSession(['username', 'token']);

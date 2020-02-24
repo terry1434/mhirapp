@@ -54,13 +54,6 @@
           <el-button @click="back">返回</el-button>
         </div>
       </div>
-      <el-dialog title="提示" :visible.sync="dialogVisible" width="340px">
-        <span>有项目已更新，确定返回？</span>
-        <span slot="footer" class="dialog-footer">
-          <el-button @click="dialogVisible = false">取 消</el-button>
-          <el-button type="primary" @click="goback">确 定</el-button>
-        </span>
-      </el-dialog>
     </form>
   </div>
 </template>
@@ -74,8 +67,8 @@ export default {
   name: "userinfoedit",
   data() {
     return {
-      dialogVisible: false,
-      ischange: false,
+      // dialogVisible: false,
+      // ischange: false,
       forminput: {
         username: "",
         fromTime: "",
@@ -93,17 +86,29 @@ export default {
     },
     getUsermarks() {
       return this.forminput.usermarks;
+    },
+    isEdited() {
+      return this.$store.state.isEdited;
     }
   },
   watch: {
     getUsername() {
+      this.setEditFlg();
       this.ischange = true;
     },
     getFromTime() {
+      this.setEditFlg();
       this.ischange = true;
     },
     getUsermarks() {
+      this.setEditFlg();
       this.ischange = true;
+    },
+    isEdited() {
+      this.$store.commit({
+        type: "setIsEdited",
+        payload: true
+      });
     }
   },
   // computed: {
@@ -112,6 +117,12 @@ export default {
   //   }
   // },
   methods: {
+    setEditFlg() {
+      this.$store.commit({
+        type: "setIsEdited",
+        payload: true
+      });
+    },
     setFromTime(dtime) {
       this.forminput.fromTime = dtime;
       let nowDate = new Date();
@@ -127,25 +138,18 @@ export default {
       this.$refs.sofar.style.display = "block";
     },
     back() {
-      if (this.ischange) {
-        this.dialogVisible = true;
-      } else {
-        this.$router.go(-1);
-      }
+      this.$emit("goback");
     },
-    goback() {
-      this.$router.go(-1);
-    },
-    submit(){
+    submit() {
       const loading = this.$loading({
-          lock: true,
-          text: 'Loading',
-          spinner: 'el-icon-loading',
-          background: 'rgba(255, 255, 255, 0.7)'
-        });
-        setTimeout(() => {
-          loading.close();
-        }, 2000);
+        lock: true,
+        text: "Loading",
+        spinner: "el-icon-loading",
+        background: "rgba(255, 255, 255, 0.7)"
+      });
+      setTimeout(() => {
+        loading.close();
+      }, 2000);
     }
   },
   components: { elDatepick, elUpload }

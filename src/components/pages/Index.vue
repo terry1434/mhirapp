@@ -3,9 +3,13 @@
   <div class="index shrink">
     <!-- <div class="userinfo" v-if="isLogin">
 
-    </div> -->
+    </div>-->
     <div class="nav">
-      <div class="logo"><router-link to="/home"><img src="../../imgs/webtitle.png" alt=""></router-link></div>
+      <div class="logo">
+        <router-link to="/home">
+          <img src="../../imgs/webtitle.png" alt />
+        </router-link>
+      </div>
       <dropdown
         v-if="!isLogin"
         :icon_before="'fa fa-language fa-1x'"
@@ -116,17 +120,16 @@ export default {
     },
     signOut() {
       const self = this;
+
       this.$message({
         message: this.lang.msg8,
         type: "success",
         duration: 1000
       });
-
       self.$store.commit({
         type: "signOut"
       });
       self.$router.push("/");
-
       // setTimeout(() => {
       //   console.log(this);
       //   this.$router.push("/");
@@ -182,10 +185,9 @@ export default {
   background-color: #15017e;
   z-index: 999;
 }
-.index .nav>div:last-child{
-  margin-right:10px;
+.index .nav > div:last-child {
+  margin-right: 10px;
 }
-
 
 .index .nav div.logo {
   width: 150px;
@@ -196,20 +198,19 @@ export default {
   background-image: url(../../imgs/logo2.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  position:relative;
+  position: relative;
 }
-.index .nav div.logo>a{
-  display:block;
-  width:100%;
-  height:100%;
+.index .nav div.logo > a {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
-.index .nav div.logo img{
+.index .nav div.logo img {
   position: absolute;
-  width:100%;
-  top:20%;
-  left:90%;
+  width: 100%;
+  top: 20%;
+  left: 90%;
 }
-
 
 .index .userinfo {
   position: absolute;
