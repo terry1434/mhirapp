@@ -50,7 +50,7 @@
     "flow": "^0.2.3",
     "flow-bin": "^0.113.0",
     "friendly-errors-webpack-plugin": "^1.6.1",
-    "html-webpack-plugin": "^2.30.1",
+    "html-webpack-plugin": "^5.5.0",
     "jQuery": "^1.7.4",
     "jquery": "^3.4.1",
     "node-notifier": "^5.1.2",
